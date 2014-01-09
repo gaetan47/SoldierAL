@@ -113,4 +113,13 @@ public class ArmedUnitSquad extends ObservableAbstract<ArmedUnit> implements
 		return result;
 	}
 
+	public float getMaxHealthPoints() {
+		return 0;
+	}
+
+	public void addHealthPoints(float f) {
+		for (ArmedUnit s : armedUnitList)
+			s.addHealthPoints(f);
+	}
+	
 }
