@@ -18,6 +18,10 @@ public abstract class SoldierAbstract implements Soldier {
 	public float getHealthPoints() {
 		return healthPoints;
 	}
+	
+	public void addHealthPoints(float f){
+		healthPoints+=f;
+	}
 
 	public boolean alive() {
 		return getHealthPoints() > 0;

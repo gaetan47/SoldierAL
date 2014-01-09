@@ -12,6 +12,15 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
 
+import soldier.Soldier;
+import soldier.SuperSoldier;
+
+/*
+ * 
+ * Notre héro
+ * 
+ */
+
 public class Pacman extends GameMovable implements Drawable, GameEntity,
 		Overlappable {
 	protected final SpriteManager spriteManager;
@@ -19,10 +28,13 @@ public class Pacman extends GameMovable implements Drawable, GameEntity,
 	protected boolean movable = true;
 	protected boolean vulnerable = false;
 	protected int vulnerableTimer = 0;
+	protected Soldier hero;
 
 	public Pacman(Canvas defaultCanvas) {
-		spriteManager = new SpriteManagerDefaultImpl("images/soldier1.gif",
-				defaultCanvas, RENDERING_SIZE, 8);
+		hero = new SuperSoldier("hero", 500, 50);
+		//TODO : Modifier l'image en soldat
+		spriteManager = new SpriteManagerDefaultImpl("images/pac1.gif",
+				defaultCanvas, RENDERING_SIZE, 6);
 		spriteManager.setTypes(
 				//
 				"right", "left", "up",
@@ -78,5 +90,13 @@ public class Pacman extends GameMovable implements Drawable, GameEntity,
 
 	public Rectangle getBoundingBox() {
 		return (new Rectangle(0, 0, RENDERING_SIZE, RENDERING_SIZE));
+	}
+	
+	public Soldier getHero() {
+		return hero;
+	}
+
+	public void setHero(Soldier hero) {
+		this.hero = hero;
 	}
 }

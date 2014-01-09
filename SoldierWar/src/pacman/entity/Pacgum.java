@@ -1,6 +1,7 @@
 package pacman.entity;
 
 import gameframework.base.Drawable;
+
 import gameframework.base.DrawableImage;
 import gameframework.base.Overlappable;
 import gameframework.game.GameEntity;
@@ -10,12 +11,20 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
 
+/*
+ * 
+ * Le bonus vie QUE pour notre HŽro
+ * 
+ */
+
+
 public class Pacgum implements Drawable, GameEntity, Overlappable {
 	protected static DrawableImage image = null;
 	protected Point position;
 	public static final int RENDERING_SIZE = 16;
 
 	public Pacgum(Canvas defaultCanvas, Point pos) {
+		//TODO : Modifier l'image en vie
 		image = new DrawableImage("images/pacgum.gif", defaultCanvas);
 		position = pos;
 	}
