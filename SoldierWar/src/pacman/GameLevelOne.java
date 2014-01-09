@@ -2,6 +2,7 @@ package pacman;
 
 import gameframework.base.MoveStrategyKeyboard;
 import gameframework.base.MoveStrategyRandom;
+import gameframework.base.ObservableValue;
 import gameframework.game.CanvasDefaultImpl;
 import gameframework.game.Game;
 import gameframework.game.GameLevelDefaultImpl;
@@ -16,6 +17,7 @@ import gameframework.game.OverlapProcessorDefaultImpl;
 import java.awt.Canvas;
 import java.awt.Point;
 
+import pacman.entity.BadGuy;
 import pacman.entity.Ghost;
 import pacman.entity.Jail;
 import pacman.entity.Pacgum;
@@ -26,6 +28,7 @@ import pacman.entity.Wall;
 import pacman.rule.GhostMovableDriver;
 import pacman.rule.PacmanMoveBlockers;
 import pacman.rule.PacmanOverlapRules;
+import utils.MiddleAgeFactory;
 
 public class GameLevelOne extends GameLevelDefaultImpl {
 	Canvas canvas;
@@ -67,7 +70,9 @@ public class GameLevelOne extends GameLevelDefaultImpl {
 			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 } };
 
 	public static final int SPRITE_SIZE = 16;
-	public static final int NUMBER_OF_GHOSTS = 5;
+	public static final int NUMBER_OF_ENEMIES = 5;
+	public static  ObservableValue<Integer> HERO_LIFE = new ObservableValue<Integer>(200);
+	public static int BOSS_LIFE = 400;
 
 	@Override
 	protected void init() {
@@ -76,8 +81,9 @@ public class GameLevelOne extends GameLevelDefaultImpl {
 		MoveBlockerChecker moveBlockerChecker = new MoveBlockerCheckerDefaultImpl();
 		moveBlockerChecker.setMoveBlockerRules(new PacmanMoveBlockers());
 		
+		// TODO : règles à initialiser ici
 		PacmanOverlapRules overlapRules = new PacmanOverlapRules(new Point(14 * SPRITE_SIZE, 17 * SPRITE_SIZE),
-				new Point(14 * SPRITE_SIZE, 15 * SPRITE_SIZE), life[0], score[0], endOfGame);
+				new Point(14 * SPRITE_SIZE, 15 * SPRITE_SIZE), HERO_LIFE, score[0], endOfGame);
 		overlapProcessor.setOverlapRules(overlapRules);
 
 		universe = new GameUniverseDefaultImpl(moveBlockerChecker, overlapProcessor);
@@ -86,28 +92,24 @@ public class GameLevelOne extends GameLevelDefaultImpl {
 		gameBoard = new GameUniverseViewPortDefaultImpl(canvas, universe);
 		((CanvasDefaultImpl) canvas).setDrawingGameBoard(gameBoard);
 
-		int totalNbGums = 0;
 		
 		// Filling up the universe with basic non movable entities and inclusion in the universe
 		for (int i = 0; i < 31; ++i) {
 			for (int j = 0; j < 28; ++j) {
 				if (tab[i][j] == 0) {
-					universe.addGameEntity(new Pacgum(canvas, new Point(j * SPRITE_SIZE, i * SPRITE_SIZE)));
-					totalNbGums++;
+					//universe.addGameEntity(new Pacgum(canvas, new Point(j * SPRITE_SIZE, i * SPRITE_SIZE)));
 				}
 				if (tab[i][j] == 1) {
 					universe.addGameEntity(new Wall(canvas, j * SPRITE_SIZE, i * SPRITE_SIZE));
 				}
 				if (tab[i][j] == 2) {
 					universe.addGameEntity(new SuperPacgum(canvas, new Point(j * SPRITE_SIZE, i * SPRITE_SIZE)));
-					totalNbGums++;
 				}
 				if (tab[i][j] == 4) {
 					universe.addGameEntity(new Jail(new Point(j * SPRITE_SIZE, i * SPRITE_SIZE)));
 				}
 			}
 		}
-		overlapRules.setTotalNbGums(totalNbGums);
 
 		// Two teleport points definition and inclusion in the universe
 		// (west side to east side)
@@ -130,17 +132,18 @@ public class GameLevelOne extends GameLevelDefaultImpl {
 		universe.addGameEntity(myPac);
 
 		// Ghosts definition and inclusion in the universe
-		Ghost myGhost;
-		for (int t = 0; t < NUMBER_OF_GHOSTS; ++t) {
+		BadGuy enemy;
+		for (int t = 0; t < NUMBER_OF_ENEMIES; ++t) {
 			GameMovableDriverDefaultImpl ghostDriv = new GhostMovableDriver();
 			MoveStrategyRandom ranStr = new MoveStrategyRandom();
 			ghostDriv.setStrategy(ranStr);
 			ghostDriv.setmoveBlockerChecker(moveBlockerChecker);
-			myGhost = new Ghost(canvas);
-			myGhost.setDriver(ghostDriv);
-			myGhost.setPosition(new Point(14 * SPRITE_SIZE, 15 * SPRITE_SIZE));
-			universe.addGameEntity(myGhost);
-			(overlapRules).addGhost(myGhost);
+			enemy = new BadGuy(canvas, new MiddleAgeFactory(), "Simple", "toto");
+			enemy.setDriver(ghostDriv);
+			// TODO : changer la position des ennemis ici
+			enemy.setPosition(new Point(14 * SPRITE_SIZE, 15 * SPRITE_SIZE));
+			universe.addGameEntity(enemy);
+			(overlapRules).addEnemy(enemy);
 		}
 
 

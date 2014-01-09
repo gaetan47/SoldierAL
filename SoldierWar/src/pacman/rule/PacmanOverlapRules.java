@@ -11,6 +11,7 @@ import gameframework.game.OverlapRulesApplierDefaultImpl;
 import java.awt.Point;
 import java.util.Vector;
 
+import pacman.entity.BadGuy;
 import pacman.entity.Ghost;
 import pacman.entity.Jail;
 import pacman.entity.Pacgum;
@@ -20,14 +21,10 @@ import pacman.entity.TeleportPairOfPoints;
 
 public class PacmanOverlapRules extends OverlapRulesApplierDefaultImpl {
 	protected GameUniverse universe;
-	protected Vector<Ghost> vGhosts = new Vector<Ghost>();
+	protected Vector<BadGuy> vEnemy = new Vector<BadGuy>();
 
-	// Time duration during which pacman is invulnerable and during which ghosts
-	// can be eaten (in number of cycles)
-	static final int INVULNERABLE_DURATION = 60;
 	protected Point pacManStartPos;
 	protected Point ghostStartPos;
-	protected boolean managePacmanDeath;
 	private final ObservableValue<Integer> score;
 	private final ObservableValue<Integer> life;
 	private final ObservableValue<Boolean> endOfGame;
@@ -48,22 +45,18 @@ public class PacmanOverlapRules extends OverlapRulesApplierDefaultImpl {
 		this.universe = universe;
 	}
 
-	public void setTotalNbGums(int totalNbGums) {
-		this.totalNbGums = totalNbGums;
-	}
 
-	public void addGhost(Ghost g) {
-		vGhosts.addElement(g);
+	public void addEnemy(BadGuy enemy) {
+		vEnemy.addElement(enemy);
 	}
 
 	@Override
 	public void applyOverlapRules(Vector<Overlap> overlappables) {
-		managePacmanDeath = true;
 		super.applyOverlapRules(overlappables);
 	}
 
-	public void overlapRule(Pacman p, Ghost g) {
-		if (!p.isVulnerable()) {
+	public void overlapRule(Pacman p, BadGuy e) {
+		/*if (!p.isVulnerable()) {
 			if (g.isActive()) {
 				g.setAlive(false);
 				MoveStrategyStraightLine strat = new MoveStrategyStraightLine(
@@ -73,42 +66,36 @@ public class PacmanOverlapRules extends OverlapRulesApplierDefaultImpl {
 				ghostDriv.setStrategy(strat);
 
 			}
-		} else {
-			if (g.isActive()) {
-				if (managePacmanDeath) {
-					life.setValue(life.getValue() - 1);
-					p.setPosition(pacManStartPos);
-					for (Ghost ghost : vGhosts) {
-						ghost.setPosition(ghostStartPos);
-					}
-					managePacmanDeath = false;
-				}
-			}
+		} else {*/
+		if (e.isActive()) {
+			
+			System.out.println("Collision !!");
 		}
+		
 	}
 
-	public void overlapRule(Ghost g, SuperPacgum spg) {
+	public void overlapRule(BadGuy e, SuperPacgum spg) {
 	}
 
-	public void overlapRule(Ghost g, Pacgum spg) {
+	public void overlapRule(BadGuy e, Pacgum spg) {
 	}
 
-	public void overlapRule(Ghost g, TeleportPairOfPoints teleport) {
-		g.setPosition(teleport.getDestination());
+	public void overlapRule(BadGuy e, TeleportPairOfPoints teleport) {
+		e.setPosition(teleport.getDestination());
 	}
 
 	public void overlapRule(Pacman p, TeleportPairOfPoints teleport) {
 		p.setPosition(teleport.getDestination());
 	}
 
-	public void overlapRule(Ghost g, Jail jail) {
-		if (!g.isActive()) {
-			g.setAlive(true);
+	public void overlapRule(BadGuy e, Jail jail) {
+		if (!e.isActive()) {
+			e.setAlive(true);
 			MoveStrategyRandom strat = new MoveStrategyRandom();
-			GameMovableDriverDefaultImpl ghostDriv = (GameMovableDriverDefaultImpl) g
+			GameMovableDriverDefaultImpl ghostDriv = (GameMovableDriverDefaultImpl) e
 					.getDriver();
 			ghostDriv.setStrategy(strat);
-			g.setPosition(ghostStartPos);
+			e.setPosition(ghostStartPos);
 		}
 	}
 
@@ -116,19 +103,16 @@ public class PacmanOverlapRules extends OverlapRulesApplierDefaultImpl {
 		score.setValue(score.getValue() + 5);
 		universe.removeGameEntity(spg);
 		pacgumEatenHandler();
-		p.setInvulnerable(INVULNERABLE_DURATION);
-		for (Ghost ghost : vGhosts) {
-			ghost.setAfraid(INVULNERABLE_DURATION);
-		}
+		// On supprime l'appeurement des mÃ©chants
 	}
 
 	/*
-	 * Ici le hŽro rencontre un bonus vie qui lui redonne de la vie (que ˆ lui)
+	 * Ici le hï¿½ro rencontre un bonus vie qui lui redonne de la vie (que ï¿½ lui)
 	 * 
 	 */
 	
 	public void overlapRule(Pacman p, Pacgum pg) {
-		//TODO : dŽfinir (pour le moment 50) le nombre de HP ˆ rajouter
+		//TODO : dï¿½finir (pour le moment 50) le nombre de HP ï¿½ rajouter
 		if (p.getHero().getMaxHealthPoints() - p.getHero().getHealthPoints() <= 50){
 			 p.getHero().addHealthPoints(p.getHero().getMaxHealthPoints() - p.getHero().getHealthPoints());
 		}

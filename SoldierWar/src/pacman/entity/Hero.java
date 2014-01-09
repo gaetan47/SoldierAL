@@ -1,7 +1,6 @@
 package pacman.entity;
 
 import gameframework.base.Drawable;
-
 import gameframework.base.Overlappable;
 import gameframework.game.GameEntity;
 import gameframework.game.GameMovable;
@@ -14,7 +13,6 @@ import java.awt.Point;
 import java.awt.Rectangle;
 
 import soldier.Soldier;
-import soldier.SoldierAbstract;
 import soldier.SuperSoldier;
 
 
@@ -26,7 +24,7 @@ public class Hero extends GameMovable implements Drawable, GameEntity,
 	protected boolean movable = true;
 	protected boolean vulnerable = false;
 	protected int vulnerableTimer = 0;
-	protected Soldier hero;
+	private Soldier hero;
 
 	public Hero(Canvas defaultCanvas) {
 		hero = new SuperSoldier("hero", 500, 50);
