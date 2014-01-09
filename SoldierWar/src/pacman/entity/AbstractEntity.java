@@ -27,7 +27,7 @@ public abstract class AbstractEntity extends GameMovable implements Drawable, Ga
 
 		private ArmedUnit unit;
 		
-		// Constructeur pour un h�ro ou boss (Super)
+		// Constructeur pour un h�ro ou boss (Super)
 		public AbstractEntity(Canvas defaultCanvas, AgeFactory factory, String soldatType, String name
 				,int healthPoint,int force) {
 			unit = new ArmedUnitSoldier(factory, soldatType, name,healthPoint,force);
@@ -47,11 +47,11 @@ public abstract class AbstractEntity extends GameMovable implements Drawable, Ga
 		}
 		
 		
-		// Constructeur pour un soldat (un paramètre de plus)
+		// Constructeur pour un soldat (un param��tre de plus)
 		public AbstractEntity(Canvas defaultCanvas, AgeFactory factory, String soldatType, String name) {
 			unit = new ArmedUnitSoldier(factory, soldatType, name);
 			// TODO : changer l'image
-			spriteManager = new SpriteManagerDefaultImpl("images/pac1.gif",
+			spriteManager = new SpriteManagerDefaultImpl("images/ghost.gif",
 					defaultCanvas, RENDERING_SIZE, 6);
 			// TODO : changer les types
 			spriteManager.setTypes(
@@ -65,7 +65,7 @@ public abstract class AbstractEntity extends GameMovable implements Drawable, Ga
 					"unused");
 		}
 
-		// Constructeur pour une armée
+		// Constructeur pour une arm��e
 		public AbstractEntity(Canvas defaultCanvas, AgeFactory factory, String name) {
 			unit = new ArmedUnitSquad(factory, name);
 			// TODO : changer l'image

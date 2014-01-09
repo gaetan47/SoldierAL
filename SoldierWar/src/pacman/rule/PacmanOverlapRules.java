@@ -1,8 +1,7 @@
 package pacman.rule;
 
-import gameframework.base.ObservableValue;
 import gameframework.base.MoveStrategyRandom;
-import gameframework.base.MoveStrategyStraightLine;
+import gameframework.base.ObservableValue;
 import gameframework.base.Overlap;
 import gameframework.game.GameMovableDriverDefaultImpl;
 import gameframework.game.GameUniverse;
@@ -11,8 +10,7 @@ import gameframework.game.OverlapRulesApplierDefaultImpl;
 import java.awt.Point;
 import java.util.Vector;
 
-import pacman.entity.BadGuy;
-import pacman.entity.Ghost;
+import pacman.entity.Enemy;
 import pacman.entity.Hero;
 import pacman.entity.Jail;
 import pacman.entity.Pacgum;
@@ -22,7 +20,7 @@ import pacman.entity.TeleportPairOfPoints;
 
 public class PacmanOverlapRules extends OverlapRulesApplierDefaultImpl {
 	protected GameUniverse universe;
-	protected Vector<BadGuy> vEnemy = new Vector<BadGuy>();
+	protected Vector<Enemy> vEnemy = new Vector<Enemy>();
 
 	protected Point pacManStartPos;
 	protected Point ghostStartPos;
@@ -47,7 +45,7 @@ public class PacmanOverlapRules extends OverlapRulesApplierDefaultImpl {
 	}
 
 
-	public void addEnemy(BadGuy enemy) {
+	public void addEnemy(Enemy enemy) {
 		vEnemy.addElement(enemy);
 	}
 
@@ -56,7 +54,7 @@ public class PacmanOverlapRules extends OverlapRulesApplierDefaultImpl {
 		super.applyOverlapRules(overlappables);
 	}
 
-	public void overlapRule(Pacman p, BadGuy e) {
+	public void overlapRule(Pacman p, Enemy e) {
 		/*if (!p.isVulnerable()) {
 			if (g.isActive()) {
 				g.setAlive(false);
@@ -77,13 +75,13 @@ public class PacmanOverlapRules extends OverlapRulesApplierDefaultImpl {
 
 	
 
-	public void overlapRule(BadGuy e, SuperPacgum spg) {
+	public void overlapRule(Enemy e, SuperPacgum spg) {
 	}
 
-	public void overlapRule(BadGuy e, Pacgum spg) {
+	public void overlapRule(Enemy e, Pacgum spg) {
 	}
 
-	public void overlapRule(BadGuy e, TeleportPairOfPoints teleport) {
+	public void overlapRule(Enemy e, TeleportPairOfPoints teleport) {
 		e.setPosition(teleport.getDestination());
 	}
 
@@ -91,7 +89,7 @@ public class PacmanOverlapRules extends OverlapRulesApplierDefaultImpl {
 		p.setPosition(teleport.getDestination());
 	}
 
-	public void overlapRule(BadGuy e, Jail jail) {
+	public void overlapRule(Enemy e, Jail jail) {
 		if (!e.isActive()) {
 			e.setAlive(true);
 			MoveStrategyRandom strat = new MoveStrategyRandom();

@@ -17,7 +17,7 @@ import gameframework.game.OverlapProcessorDefaultImpl;
 import java.awt.Canvas;
 import java.awt.Point;
 
-import pacman.entity.BadGuy;
+import pacman.entity.Enemy;
 import pacman.entity.Ghost;
 import pacman.entity.Hero;
 import pacman.entity.Jail;
@@ -123,17 +123,6 @@ public class GameLevelOne extends GameLevelDefaultImpl {
 				2 * SPRITE_SIZE, 14 * SPRITE_SIZE)));
 		
 		
-		/*// Pacman definition and inclusion in the universe
-		Pacman myPac = new Pacman(canvas);
-		GameMovableDriverDefaultImpl pacDriver = new GameMovableDriverDefaultImpl();
-		MoveStrategyKeyboard keyStr = new MoveStrategyKeyboard();
-		pacDriver.setStrategy(keyStr);
-		pacDriver.setmoveBlockerChecker(moveBlockerChecker);
-		canvas.addKeyListener(keyStr);
-		myPac.setDriver(pacDriver);
-		myPac.setPosition(new Point(14 * SPRITE_SIZE, 17 * SPRITE_SIZE));
-		universe.addGameEntity(myPac);*/
-		
 		
 		/*Cr�ation du h�ro*/
 		AgeFactory factory = new MiddleAgeFactory();
@@ -149,13 +138,13 @@ public class GameLevelOne extends GameLevelDefaultImpl {
 		universe.addGameEntity(myHero);
 
 		// Ghosts definition and inclusion in the universe
-		BadGuy enemy;
+		Enemy enemy;
 		for (int t = 0; t < NUMBER_OF_ENEMIES; ++t) {
 			GameMovableDriverDefaultImpl ghostDriv = new GhostMovableDriver();
 			MoveStrategyRandom ranStr = new MoveStrategyRandom();
 			ghostDriv.setStrategy(ranStr);
 			ghostDriv.setmoveBlockerChecker(moveBlockerChecker);
-			enemy = new BadGuy(canvas, new MiddleAgeFactory(), "Simple", "toto");
+			enemy = new Enemy(canvas, new MiddleAgeFactory(), "Simple", "toto");
 			enemy.setDriver(ghostDriv);
 			// TODO : changer la position des ennemis ici
 			enemy.setPosition(new Point(14 * SPRITE_SIZE, 15 * SPRITE_SIZE));
