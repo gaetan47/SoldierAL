@@ -133,6 +133,8 @@ public class GameLevelOne extends GameLevelDefaultImpl {
 		myHero.setDriver(pacDriver);
 		myHero.setPosition(new Point(14 * SPRITE_SIZE, 17 * SPRITE_SIZE));
 		universe.addGameEntity(myHero);
+		GameDetailsFrame frame = new GameDetailsFrame(myHero);
+		myHero.addObserver(new HealthObserver(frame.getHeroHealth2(),myHero));
 
 		// Ghosts definition and inclusion in the universe
 		Enemy enemy;
