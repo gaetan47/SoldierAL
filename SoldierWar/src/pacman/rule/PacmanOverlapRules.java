@@ -55,16 +55,6 @@ public class PacmanOverlapRules extends OverlapRulesApplierDefaultImpl {
 	}
 
 	public void overlapRule(Pacman p, Enemy e) {
-		/*if (!p.isVulnerable()) {
-			if (g.isActive()) {
-				g.setAlive(false);
-				MoveStrategyStraightLine strat = new MoveStrategyStraightLine(
-						g.getPosition(), ghostStartPos);
-				GameMovableDriverDefaultImpl ghostDriv = (GameMovableDriverDefaultImpl) g
-						.getDriver();
-				ghostDriv.setStrategy(strat);
-
-			}*/
 		if (e.isActive()) {
 			
 			System.out.println("Collision !!");

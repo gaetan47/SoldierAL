@@ -1,7 +1,6 @@
 package pacman.entity;
 
 import gameframework.base.Drawable;
-import gameframework.base.DrawableImage;
 import gameframework.base.Overlappable;
 import gameframework.game.GameEntity;
 import gameframework.game.GameMovable;
@@ -14,13 +13,10 @@ import java.awt.Point;
 import java.awt.Rectangle;
 
 import soldier.ArmedUnit;
-import soldier.ArmedUnitSoldier;
-import soldier.Soldier;
-import soldier.SuperSoldier;
 
 /*
  * 
- * Notre hŽro
+ * Notre hï¿½ro
  * 
  */
 

@@ -18,18 +18,14 @@ import java.awt.Canvas;
 import java.awt.Point;
 
 import pacman.entity.Enemy;
-import pacman.entity.Ghost;
 import pacman.entity.Hero;
 import pacman.entity.Jail;
-import pacman.entity.Pacgum;
-import pacman.entity.Pacman;
 import pacman.entity.SuperPacgum;
 import pacman.entity.TeleportPairOfPoints;
 import pacman.entity.Wall;
 import pacman.rule.GhostMovableDriver;
 import pacman.rule.PacmanMoveBlockers;
 import pacman.rule.PacmanOverlapRules;
-
 import utils.AgeFactory;
 import utils.MiddleAgeFactory;
 

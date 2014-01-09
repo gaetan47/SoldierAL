@@ -2,17 +2,17 @@ package pacman.rule;
 
 import gameframework.game.IllegalMoveException;
 import gameframework.game.MoveBlockerRulesApplierDefaultImpl;
-import pacman.entity.Ghost;
+import pacman.entity.Boss;
 import pacman.entity.Wall;
 
 public class PacmanMoveBlockers extends MoveBlockerRulesApplierDefaultImpl {
 
-	public void moveBlockerRule(Ghost g, Wall w) throws IllegalMoveException {
+	public void moveBlockerRule(Boss b, Wall w) throws IllegalMoveException {
 		// The default case is when a ghost is active and not able to cross a
 		// wall
-		if (g.isActive()) {
+		if (b.isActive()) {
 			throw new IllegalMoveException();
-			// When a ghost is not active, it is able to cross a wall
+			// When a boss is not active, it is able to cross a wall
 		}
 	}
 }
