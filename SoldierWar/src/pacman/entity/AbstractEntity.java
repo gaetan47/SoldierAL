@@ -137,4 +137,12 @@ public abstract class AbstractEntity extends GameMovable implements Drawable, Ga
 			unit.addHealthPoints(f);
 			
 		}
+		
+		public float strike(){
+			return unit.strike();
+		}
+		
+		public void parry(float force){
+			unit.parry(force);
+		}
 }
