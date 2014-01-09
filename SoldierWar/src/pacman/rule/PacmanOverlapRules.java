@@ -81,7 +81,21 @@ public class PacmanOverlapRules extends OverlapRulesApplierDefaultImpl {
 	 * Ici le hï¿½ro rencontre un bonus vie qui lui redonne de la vie (que ï¿½ lui)
 	 * 
 	 */
-	
+	public void overlapRule (Hero h, Enemy e){
+		while (h.getHealthPointUnit() >0 && e.getHealthPointUnit()>0){
+			e.parry(h.strike());
+			h.parry(e.strike());
+			System.out.println("Vie du HŽro : " + h.getHealthPointUnit() + "/" + h.getMaxHealthPointUnit()+"\n");
+			System.out.println("Vie de l'Ennemi : " + e.getHealthPointUnit() + "/" + e.getMaxHealthPointUnit()+"\n");
+		}
+		if (h.getHealthPointUnit() >0)
+			universe.removeGameEntity(e);
+		else{
+			universe.removeGameEntity(h);
+		}
+			
+	}
+		
 	
 	public void overlapRule (Hero h, Heart pg){
 		//TODO : dï¿½finir (pour le moment 50) le nombre de HP ï¿½ rajouter
