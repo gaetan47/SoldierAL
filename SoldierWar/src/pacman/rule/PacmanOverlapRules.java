@@ -11,6 +11,7 @@ import gameframework.game.OverlapRulesApplierDefaultImpl;
 import java.awt.Point;
 import java.util.Vector;
 
+import pacman.entity.BadGuy;
 import pacman.entity.Ghost;
 import pacman.entity.Jail;
 import pacman.entity.Pacgum;
@@ -74,7 +75,8 @@ public class PacmanOverlapRules extends OverlapRulesApplierDefaultImpl {
 
 			}
 		} else {
-			if (g.isActive()) {
+			/*Evite de perdre quand touche fantome*/
+			/*if (g.isActive()) {
 				if (managePacmanDeath) {
 					life.setValue(life.getValue() - 1);
 					p.setPosition(pacManStartPos);
@@ -83,8 +85,19 @@ public class PacmanOverlapRules extends OverlapRulesApplierDefaultImpl {
 					}
 					managePacmanDeath = false;
 				}
-			}
+			}*/
 		}
+	}
+	
+
+	public void overlapRule(Pacman p, BadGuy boss) {
+		while (boss.getUnit().getHealthPoints() > 0 && p.getHero().getHealthPoints() > 0){
+			boss.getUnit().parry(p.getHero().strike());
+			p.getHero().parry(boss.getUnit().strike());
+			System.out.println("Vie du boss :" + boss.getUnit().getHealthPoints()+ "\n");
+			System.out.println("Vie du héro :" + p.getHero().getHealthPoints()+ "/" + p.getHero().getMaxHealthPoints()+"\n");
+		}
+	
 	}
 
 	public void overlapRule(Ghost g, SuperPacgum spg) {

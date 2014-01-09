@@ -29,11 +29,13 @@ Overlappable {
 
 	private ArmedUnit unit;
 
+
+
 	// Constructeur pour un soldat (un paramètre de plus)
 	public BadGuy(Canvas defaultCanvas, AgeFactory factory, String soldatType, String name) {
 		unit = new ArmedUnitSoldier(factory, soldatType, name);
 		// TODO : changer l'image
-		spriteManager = new SpriteManagerDefaultImpl("images/ghost.gif",
+		spriteManager = new SpriteManagerDefaultImpl("images/pac1.gif",
 				defaultCanvas, RENDERING_SIZE, 6);
 		// TODO : changer les types
 		spriteManager.setTypes(
@@ -105,6 +107,14 @@ Overlappable {
 
 	public Rectangle getBoundingBox() {
 		return (new Rectangle(0, 0, RENDERING_SIZE, RENDERING_SIZE));
+	}
+	
+	public ArmedUnit getUnit() {
+		return unit;
+	}
+
+	public void setUnit(ArmedUnit unit) {
+		this.unit = unit;
 	}
 }
 
