@@ -18,6 +18,7 @@ import java.awt.Canvas;
 import java.awt.Point;
 
 import pacman.entity.Enemy;
+import pacman.entity.Heart;
 import pacman.entity.Hero;
 import pacman.entity.Jail;
 import pacman.entity.SuperHeart;
@@ -70,7 +71,7 @@ public class GameLevelOne extends GameLevelDefaultImpl {
 
 	public static final int SPRITE_SIZE = 16;
 	public static final int NUMBER_OF_ENEMIES = 5;
-	public static  ObservableValue<Integer> HERO_LIFE = new ObservableValue<Integer>(200);
+	public static int HERO_LIFE = 500;
 	public static int BOSS_LIFE = 400;
 
 	@Override
@@ -82,7 +83,7 @@ public class GameLevelOne extends GameLevelDefaultImpl {
 		
 		// TODO : règles à initialiser ici
 		PacmanOverlapRules overlapRules = new PacmanOverlapRules(new Point(14 * SPRITE_SIZE, 17 * SPRITE_SIZE),
-				new Point(14 * SPRITE_SIZE, 15 * SPRITE_SIZE), HERO_LIFE, score[0], endOfGame);
+				new Point(14 * SPRITE_SIZE, 15 * SPRITE_SIZE), new ObservableValue<Integer>(HERO_LIFE), score[0], endOfGame);
 		overlapProcessor.setOverlapRules(overlapRules);
 
 		universe = new GameUniverseDefaultImpl(moveBlockerChecker, overlapProcessor);
@@ -96,7 +97,7 @@ public class GameLevelOne extends GameLevelDefaultImpl {
 		for (int i = 0; i < 31; ++i) {
 			for (int j = 0; j < 28; ++j) {
 				if (tab[i][j] == 0) {
-					//universe.addGameEntity(new Pacgum(canvas, new Point(j * SPRITE_SIZE, i * SPRITE_SIZE)));
+					universe.addGameEntity(new Heart(canvas, new Point(j * SPRITE_SIZE, i * SPRITE_SIZE)));
 				}
 				if (tab[i][j] == 1) {
 					universe.addGameEntity(new Wall(canvas, j * SPRITE_SIZE, i * SPRITE_SIZE));
