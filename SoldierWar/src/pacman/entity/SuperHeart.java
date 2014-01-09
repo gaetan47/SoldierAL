@@ -11,9 +11,7 @@ import java.awt.Point;
 import java.awt.Rectangle;
 
 public class SuperHeart extends AbstractBonus implements Drawable, GameEntity, Overlappable {
-	protected static DrawableImage image = null;
-	protected Point position;
-	public static final int RENDERING_SIZE = 16;
+
 
 	public SuperHeart(Canvas defaultCanvas, Point pos) {
 		image = new DrawableImage("images/superpacgum.gif", defaultCanvas);

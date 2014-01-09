@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 public class Main {
 	public static void main(String[] args) {
+		GameDetailsFrame frame = new GameDetailsFrame();
 		GameDefaultImpl g = new GameDefaultImpl();
 		ArrayList<GameLevel> levels = new ArrayList<GameLevel>();
 
