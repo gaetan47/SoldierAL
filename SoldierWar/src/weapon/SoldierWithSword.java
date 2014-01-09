@@ -7,21 +7,5 @@ public class SoldierWithSword extends SoldierArmed<Sword> {
 		super(s, new Sword());
 	}
 
-	@Override
-	public int getMaxHealthPoints() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
-	@Override
-	public void setMaxHealthPoints(int maxHealthPoints) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void addHealthPoints(float f) {
-		// TODO Auto-generated method stub
-		
-	}
 }

@@ -17,6 +17,21 @@ public abstract class SoldierArmed<W extends Weapon> implements Soldier {
 		soldier = s;
 		weapon = a;
 	}
+	
+	public int getMaxHealthPoints() {
+		
+		return soldier.getMaxHealthPoints();
+	}
+
+	public void setMaxHealthPoints(int maxHealthPoints) {
+		soldier.setMaxHealthPoints(maxHealthPoints);
+		
+	}
+
+	public void addHealthPoints(float f) {
+		soldier.addHealthPoints(f);
+		
+	}
 
 	public String getName() {
 		return soldier.getName();
@@ -51,4 +66,6 @@ public abstract class SoldierArmed<W extends Weapon> implements Soldier {
 		weapon.damageCompute(WEARINESS_COEF);
 		return force;
 	}
+	
+	
 }
