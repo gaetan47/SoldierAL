@@ -14,6 +14,7 @@ public abstract class AbstractBonus {
 	public Point getPosition() {
 		return position;
 	}
+	
 	public void draw(Graphics g) {
 		g.drawImage(image.getImage(), (int) getPosition().getX(),
 				(int) getPosition().getY(), RENDERING_SIZE, RENDERING_SIZE,
