@@ -1,22 +1,26 @@
 package soldier;
 
-public class Horseman extends SoldierAbstract {
-	private static final int FORCE = 20;
-	private static final int HEALTHPOINTS = 120;
+public class SuperSoldier extends SoldierAbstract {
+	
 	private int maxHealthPoints;
 
-	public Horseman(String name) {
-		super(name, HEALTHPOINTS, FORCE);
+	
+	public SuperSoldier(String nom, int healthpoints, int force) {
+		super(nom, healthpoints,force);
+		maxHealthPoints = healthpoints;
 	}
 
 	public void heal() { //XXX resurrection allowed
-		healthPoints = HEALTHPOINTS;
-	}
-	
+		healthPoints = maxHealthPoints;
+	}	
+
 	public int getMaxHealthPoints() {
 		return maxHealthPoints;
 	}
 	public void setMaxHealthPoints(int maxHealthPoints) {
 		this.maxHealthPoints = maxHealthPoints;
 	}
-}
+}		
+
+
+

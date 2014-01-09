@@ -15,14 +15,14 @@ import java.awt.Rectangle;
 public class Pacman extends GameMovable implements Drawable, GameEntity,
 		Overlappable {
 	protected final SpriteManager spriteManager;
-	public static final int RENDERING_SIZE = 16;
+	public static final int RENDERING_SIZE = 14;
 	protected boolean movable = true;
 	protected boolean vulnerable = false;
 	protected int vulnerableTimer = 0;
 
 	public Pacman(Canvas defaultCanvas) {
-		spriteManager = new SpriteManagerDefaultImpl("images/pac1.gif",
-				defaultCanvas, RENDERING_SIZE, 6);
+		spriteManager = new SpriteManagerDefaultImpl("images/soldier1.gif",
+				defaultCanvas, RENDERING_SIZE, 8);
 		spriteManager.setTypes(
 				//
 				"right", "left", "up",
