@@ -10,12 +10,12 @@ import gameframework.game.OverlapRulesApplierDefaultImpl;
 import java.awt.Point;
 import java.util.Vector;
 
+import pacman.entity.AbstractBonus;
 import pacman.entity.Enemy;
 import pacman.entity.Hero;
 import pacman.entity.Jail;
-import pacman.entity.Pacgum;
-import pacman.entity.Pacman;
-import pacman.entity.SuperPacgum;
+import pacman.entity.Heart;
+import pacman.entity.SuperHeart;
 import pacman.entity.TeleportPairOfPoints;
 
 public class PacmanOverlapRules extends OverlapRulesApplierDefaultImpl {
@@ -52,32 +52,18 @@ public class PacmanOverlapRules extends OverlapRulesApplierDefaultImpl {
 	@Override
 	public void applyOverlapRules(Vector<Overlap> overlappables) {
 		super.applyOverlapRules(overlappables);
+	}	
+
+	public void overlapRule(Enemy e, SuperHeart spg) {
 	}
 
-	public void overlapRule(Pacman p, Enemy e) {
-		if (e.isActive()) {
-			
-			System.out.println("Collision !!");
-		}
-		
-	}
-	
-
-	
-
-	public void overlapRule(Enemy e, SuperPacgum spg) {
-	}
-
-	public void overlapRule(Enemy e, Pacgum spg) {
+	public void overlapRule(Enemy e, AbstractBonus spg) {
 	}
 
 	public void overlapRule(Enemy e, TeleportPairOfPoints teleport) {
 		e.setPosition(teleport.getDestination());
 	}
 
-	public void overlapRule(Pacman p, TeleportPairOfPoints teleport) {
-		p.setPosition(teleport.getDestination());
-	}
 
 	public void overlapRule(Enemy e, Jail jail) {
 		if (!e.isActive()) {
@@ -90,12 +76,6 @@ public class PacmanOverlapRules extends OverlapRulesApplierDefaultImpl {
 		}
 	}
 
-	public void overlapRule(Pacman p, SuperPacgum spg) {
-		score.setValue(score.getValue() + 5);
-		universe.removeGameEntity(spg);
-		pacgumEatenHandler();
-		// On supprime l'appeurement des méchants
-	}
 
 	/*
 	 * Ici le h�ro rencontre un bonus vie qui lui redonne de la vie (que � lui)
@@ -103,7 +83,7 @@ public class PacmanOverlapRules extends OverlapRulesApplierDefaultImpl {
 	 */
 	
 	
-	public void overlapRule (Hero h, Pacgum pg){
+	public void overlapRule (Hero h, Heart pg){
 		//TODO : d�finir (pour le moment 50) le nombre de HP � rajouter
 		if (h.getMaxHealthPointUnit() - h.getHealthPointUnit() <= 50){
 			 h.addHealthPoint(h.getMaxHealthPointUnit() - h.getHealthPointUnit());
@@ -115,7 +95,7 @@ public class PacmanOverlapRules extends OverlapRulesApplierDefaultImpl {
 		universe.removeGameEntity(pg);
 	}
 	
-	public void overlapRule (Hero h, SuperPacgum spg){
+	public void overlapRule (Hero h, SuperHeart spg){
 		h.addHealthPoint(-30);
 		System.out.println(h.getHealthPointUnit() + " Hp / "+h.getMaxHealthPointUnit() + " Hp\n");
 		universe.removeGameEntity(spg);

@@ -20,7 +20,7 @@ import java.awt.Point;
 import pacman.entity.Enemy;
 import pacman.entity.Hero;
 import pacman.entity.Jail;
-import pacman.entity.SuperPacgum;
+import pacman.entity.SuperHeart;
 import pacman.entity.TeleportPairOfPoints;
 import pacman.entity.Wall;
 import pacman.rule.GhostMovableDriver;
@@ -102,7 +102,7 @@ public class GameLevelOne extends GameLevelDefaultImpl {
 					universe.addGameEntity(new Wall(canvas, j * SPRITE_SIZE, i * SPRITE_SIZE));
 				}
 				if (tab[i][j] == 2) {
-					universe.addGameEntity(new SuperPacgum(canvas, new Point(j * SPRITE_SIZE, i * SPRITE_SIZE)));
+					universe.addGameEntity(new SuperHeart(canvas, new Point(j * SPRITE_SIZE, i * SPRITE_SIZE)));
 				}
 				if (tab[i][j] == 4) {
 					universe.addGameEntity(new Jail(new Point(j * SPRITE_SIZE, i * SPRITE_SIZE)));
