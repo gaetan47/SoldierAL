@@ -1,6 +1,7 @@
 package pacman.entity;
 
 import gameframework.base.Drawable;
+
 import gameframework.base.Overlappable;
 import gameframework.game.GameEntity;
 import gameframework.game.GameMovable;
@@ -12,15 +13,23 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
 
-public class Pacman extends GameMovable implements Drawable, GameEntity,
+import soldier.Soldier;
+import soldier.SoldierAbstract;
+import soldier.SuperSoldier;
+
+
+
+public class Hero extends GameMovable implements Drawable, GameEntity,
 		Overlappable {
 	protected final SpriteManager spriteManager;
 	public static final int RENDERING_SIZE = 16;
 	protected boolean movable = true;
 	protected boolean vulnerable = false;
 	protected int vulnerableTimer = 0;
+	protected Soldier hero;
 
-	public Pacman(Canvas defaultCanvas) {
+	public Hero(Canvas defaultCanvas) {
+		hero = new SuperSoldier("hero", 500, 50);
 		spriteManager = new SpriteManagerDefaultImpl("images/soldier1.gif",
 				defaultCanvas, RENDERING_SIZE, 8);
 		spriteManager.setTypes(
