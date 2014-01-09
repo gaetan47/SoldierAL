@@ -13,6 +13,7 @@ import java.util.Vector;
 
 import pacman.entity.BadGuy;
 import pacman.entity.Ghost;
+import pacman.entity.Hero;
 import pacman.entity.Jail;
 import pacman.entity.Pacgum;
 import pacman.entity.Pacman;
@@ -65,14 +66,16 @@ public class PacmanOverlapRules extends OverlapRulesApplierDefaultImpl {
 						.getDriver();
 				ghostDriv.setStrategy(strat);
 
-			}
-		} else {*/
+			}*/
 		if (e.isActive()) {
 			
 			System.out.println("Collision !!");
 		}
 		
 	}
+	
+
+	
 
 	public void overlapRule(BadGuy e, SuperPacgum spg) {
 	}
@@ -111,18 +114,23 @@ public class PacmanOverlapRules extends OverlapRulesApplierDefaultImpl {
 	 * 
 	 */
 	
-	public void overlapRule(Pacman p, Pacgum pg) {
+	
+	public void overlapRule (Hero h, Pacgum pg){
 		//TODO : d�finir (pour le moment 50) le nombre de HP � rajouter
-		if (p.getHero().getMaxHealthPoints() - p.getHero().getHealthPoints() <= 50){
-			 p.getHero().addHealthPoints(p.getHero().getMaxHealthPoints() - p.getHero().getHealthPoints());
+		if (h.getMaxHealthPointUnit() - h.getHealthPointUnit() <= 50){
+			 h.addHealthPoint(h.getMaxHealthPointUnit() - h.getHealthPointUnit());
 		}
 		else{
-			 p.getHero().addHealthPoints(50);
+			 h.addHealthPoint(50);
 		}
-		System.out.println(p.getHero().getHealthPoints() + " Hp / "+p.getHero().getMaxHealthPoints() + " Hp\n");
-		score.setValue(score.getValue() + 1);
+		System.out.println(h.getHealthPointUnit() + " Hp / "+h.getMaxHealthPointUnit() + " Hp\n");
 		universe.removeGameEntity(pg);
-		pacgumEatenHandler();
+	}
+	
+	public void overlapRule (Hero h, SuperPacgum spg){
+		h.addHealthPoint(-30);
+		System.out.println(h.getHealthPointUnit() + " Hp / "+h.getMaxHealthPointUnit() + " Hp\n");
+		universe.removeGameEntity(spg);
 	}
 
 	private void pacgumEatenHandler() {

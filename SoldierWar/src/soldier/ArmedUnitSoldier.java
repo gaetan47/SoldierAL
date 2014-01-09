@@ -24,6 +24,21 @@ public class ArmedUnitSoldier extends ObservableAbstract<ArmedUnit> implements
 					+ e.toString());
 		}
 	}
+	
+	public ArmedUnitSoldier(AgeFactory factory, String soldatType, String name, int healthpoint, int force) {
+		this.age = factory;
+		String methodName = "get" + soldatType + "Soldier";
+		try {
+			
+			Method method = factory.getClass().getMethod(methodName,
+					String.class , int.class , int.class);
+ 			soldier = (SoldierAbstract) method.invoke(factory, name, healthpoint, force);
+		} catch (Exception e) {
+			throw new UnknownSoldierTypeException("Unknown soldier type"
+					+ e.toString());
+		}
+
+	}
 
 	public void addEquipment(String equipmentType) {
 		if (alive()) { // XXX "else" not treated
@@ -51,7 +66,15 @@ public class ArmedUnitSoldier extends ObservableAbstract<ArmedUnit> implements
 	public float getHealthPoints() {
 		return soldier.getHealthPoints();
 	}
+	
+	public float getMaxHealthPoints() {
+		return soldier.getMaxHealthPoints();
+	}
 
+	public void addHealthPoints(float f){
+		soldier.addHealthPoints(f);
+	}
+	
 	public AgeFactory getAge() {
 		return age;
 	}

@@ -19,6 +19,7 @@ import java.awt.Point;
 
 import pacman.entity.BadGuy;
 import pacman.entity.Ghost;
+import pacman.entity.Hero;
 import pacman.entity.Jail;
 import pacman.entity.Pacgum;
 import pacman.entity.Pacman;
@@ -28,6 +29,8 @@ import pacman.entity.Wall;
 import pacman.rule.GhostMovableDriver;
 import pacman.rule.PacmanMoveBlockers;
 import pacman.rule.PacmanOverlapRules;
+
+import utils.AgeFactory;
 import utils.MiddleAgeFactory;
 
 public class GameLevelOne extends GameLevelDefaultImpl {
@@ -120,7 +123,7 @@ public class GameLevelOne extends GameLevelDefaultImpl {
 				2 * SPRITE_SIZE, 14 * SPRITE_SIZE)));
 		
 		
-		// Pacman definition and inclusion in the universe
+		/*// Pacman definition and inclusion in the universe
 		Pacman myPac = new Pacman(canvas);
 		GameMovableDriverDefaultImpl pacDriver = new GameMovableDriverDefaultImpl();
 		MoveStrategyKeyboard keyStr = new MoveStrategyKeyboard();
@@ -129,7 +132,21 @@ public class GameLevelOne extends GameLevelDefaultImpl {
 		canvas.addKeyListener(keyStr);
 		myPac.setDriver(pacDriver);
 		myPac.setPosition(new Point(14 * SPRITE_SIZE, 17 * SPRITE_SIZE));
-		universe.addGameEntity(myPac);
+		universe.addGameEntity(myPac);*/
+		
+		
+		/*Cr�ation du h�ro*/
+		AgeFactory factory = new MiddleAgeFactory();
+		Hero myHero = new Hero(canvas, factory, "Super", "Zelda", 500, 50);
+		
+		GameMovableDriverDefaultImpl pacDriver = new GameMovableDriverDefaultImpl();
+		MoveStrategyKeyboard keyStr = new MoveStrategyKeyboard();
+		pacDriver.setStrategy(keyStr);
+		pacDriver.setmoveBlockerChecker(moveBlockerChecker);
+		canvas.addKeyListener(keyStr);
+		myHero.setDriver(pacDriver);
+		myHero.setPosition(new Point(14 * SPRITE_SIZE, 17 * SPRITE_SIZE));
+		universe.addGameEntity(myHero);
 
 		// Ghosts definition and inclusion in the universe
 		BadGuy enemy;

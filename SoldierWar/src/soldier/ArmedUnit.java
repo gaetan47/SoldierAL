@@ -7,6 +7,8 @@ import utils.AgeFactory;
 public interface ArmedUnit {
 	public String getName();
 	public float getHealthPoints();
+	public float getMaxHealthPoints();
+	public void addHealthPoints(float f);
 	public AgeFactory getAge();
 	public boolean alive();
 	public void heal();
