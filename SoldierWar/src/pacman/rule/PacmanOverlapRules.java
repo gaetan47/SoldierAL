@@ -8,6 +8,7 @@ import gameframework.game.GameUniverse;
 import gameframework.game.OverlapRulesApplierDefaultImpl;
 
 import java.awt.Point;
+import java.util.Random;
 import java.util.Vector;
 
 import pacman.entity.AbstractBonus;
@@ -81,32 +82,42 @@ public class PacmanOverlapRules extends OverlapRulesApplierDefaultImpl {
 	 * Ici le h�ro rencontre un bonus vie qui lui redonne de la vie (que � lui)
 	 * 
 	 */
-	public void overlapRule (Hero h, Enemy e){
-		while (h.getHealthPointUnit() >0 && e.getHealthPointUnit()>0){
-			e.parry(h.strike());
-			h.parry(e.strike());
-			System.out.println("Vie du H�ro : " + h.getHealthPointUnit() + "/" + h.getMaxHealthPointUnit()+"\n");
-			System.out.println("Vie de l'Ennemi : " + e.getHealthPointUnit() + "/" + e.getMaxHealthPointUnit()+"\n");
+	public void overlapRule (Hero hero, Enemy enemy){
+		Random random = new Random();
+		boolean isHeroFirst;
+		while (hero.getHealthPointUnit() > 0 && enemy.getHealthPointUnit() > 0){
+			// On choisit aléatoirement si notre héro ou l'ennemi commence à attaquer
+			isHeroFirst = random.nextBoolean();
+			if (isHeroFirst){
+				
+				enemy.parry(hero.strike());
+				hero.parry(enemy.strike());
+			}else{
+				hero.parry(enemy.strike());
+				enemy.parry(hero.strike());
+			}
+			System.out.println("Vie du H�ro : " + hero.getHealthPointUnit() + "/" + hero.getMaxHealthPointUnit()+"\n");
+			System.out.println("Vie de l'Ennemi : " + enemy.getHealthPointUnit() + "/" + enemy.getMaxHealthPointUnit()+"\n");
 		}
-		if (h.getHealthPointUnit() >0)
-			universe.removeGameEntity(e);
+		if (hero.getHealthPointUnit() > 0)
+			universe.removeGameEntity(enemy);
 		else{
-			universe.removeGameEntity(h);
+			universe.removeGameEntity(hero);
 		}
 			
 	}
 		
 	
-	public void overlapRule (Hero h, Heart pg){
+	public void overlapRule (Hero hero, Heart heart){
 		//TODO : d�finir (pour le moment 50) le nombre de HP � rajouter
-		if (h.getMaxHealthPointUnit() - h.getHealthPointUnit() <= 50){
-			 h.addHealthPoint(h.getMaxHealthPointUnit() - h.getHealthPointUnit());
+		if (hero.getMaxHealthPointUnit() - hero.getHealthPointUnit() <= 50){
+			 hero.addHealthPoint(hero.getMaxHealthPointUnit() - hero.getHealthPointUnit());
 		}
 		else{
-			 h.addHealthPoint(50);
+			 hero.addHealthPoint(50);
 		}
-		System.out.println(h.getHealthPointUnit() + " Hp / "+h.getMaxHealthPointUnit() + " Hp\n");
-		universe.removeGameEntity(pg);
+		System.out.println(hero.getHealthPointUnit() + " Hp / "+hero.getMaxHealthPointUnit() + " Hp\n");
+		universe.removeGameEntity(heart);
 	}
 	
 	public void overlapRule (Hero h, SuperHeart spg){

@@ -121,9 +121,9 @@ public class GameLevelOne extends GameLevelDefaultImpl {
 		
 		
 		
-		/*Cr�ation du h�ro*/
-		AgeFactory factory = new MiddleAgeFactory();
-		Hero myHero = new Hero(canvas, factory, "Super", "Zelda", 500, 50);
+		/*Création du héro*/
+		AgeFactory age = new MiddleAgeFactory();
+		Hero myHero = new Hero(canvas, age, "Super", "Link", 500, 50);
 		
 		GameMovableDriverDefaultImpl pacDriver = new GameMovableDriverDefaultImpl();
 		MoveStrategyKeyboard keyStr = new MoveStrategyKeyboard();
