@@ -6,7 +6,7 @@ import javax.swing.JLabel;
 
 import pacman.entity.Hero;
 
-public class HealthObserver extends Observable implements ObserverDetails {
+public class HealthObserver extends Observable implements ObserverGameDetails {
 	
 	private JLabel l;
 	private Hero h;

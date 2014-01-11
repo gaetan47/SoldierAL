@@ -5,6 +5,7 @@ public abstract class SoldierAbstract implements Soldier {
 	protected float healthPoints;
 	protected float force;
 
+
 	public SoldierAbstract(String nom, float healthPoints, float force) {
 		this.name = nom;
 		this.healthPoints = healthPoints;
@@ -36,4 +37,12 @@ public abstract class SoldierAbstract implements Soldier {
 	public float strike() {
 		return alive() ? force : 0; 
 	} 
+	
+	public float getForce() {
+		return force;
+	}
+
+	public void setForce(float force) {
+		this.force = force;
+	}
 }

@@ -123,7 +123,7 @@ public class GameLevelOne extends GameLevelDefaultImpl {
 		
 		/*Création du héro*/
 		AgeFactory age = new MiddleAgeFactory();
-		Hero myHero = new Hero(canvas, age, "Super", "Link", 500, 50);
+		Hero myHero = new Hero(canvas, age, "Super", "Link", HERO_LIFE, 50);
 		
 		GameMovableDriverDefaultImpl pacDriver = new GameMovableDriverDefaultImpl();
 		MoveStrategyKeyboard keyStr = new MoveStrategyKeyboard();
@@ -133,7 +133,7 @@ public class GameLevelOne extends GameLevelDefaultImpl {
 		myHero.setDriver(pacDriver);
 		myHero.setPosition(new Point(14 * SPRITE_SIZE, 17 * SPRITE_SIZE));
 		universe.addGameEntity(myHero);
-		GameDetailsFrame frame = new GameDetailsFrame(myHero);
+		GameDetailsFrame frame = new GameDetailsFrame(myHero.getHealthPointUnit(),myHero.getMaxHealthPointUnit(),myHero.strike());
 		myHero.addObserver(new HealthObserver(frame.getHeroHealth2(),myHero));
 
 		// Ghosts definition and inclusion in the universe

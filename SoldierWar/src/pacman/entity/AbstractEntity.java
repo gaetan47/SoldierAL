@@ -7,7 +7,7 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 
 import pacman.HealthObserver;
-import pacman.ObserverDetails;
+import pacman.ObserverGameDetails;
 
 import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
 
@@ -24,7 +24,7 @@ import gameframework.game.SpriteManagerDefaultImpl;
 
 public abstract class AbstractEntity extends GameMovable implements Drawable, GameEntity,
 	Overlappable {
-		protected ArrayList<ObserverDetails> obs = new ArrayList<ObserverDetails>();
+		protected ArrayList<ObserverGameDetails> obs = new ArrayList<ObserverGameDetails>();
 		protected static DrawableImage image = null;
 		protected boolean movable = true;
 		protected boolean active = true;
@@ -141,7 +141,7 @@ public abstract class AbstractEntity extends GameMovable implements Drawable, Ga
 		
 		public void addHealthPoint(float f){
 			unit.addHealthPoints(f);
-			for (ObserverDetails ho : obs)
+			for (ObserverGameDetails ho : obs)
 				ho.updateFrameHealth();
 			
 		}
@@ -152,11 +152,11 @@ public abstract class AbstractEntity extends GameMovable implements Drawable, Ga
 		
 		public void parry(float force){
 			unit.parry(force);
-			for (ObserverDetails ho : obs)
+			for (ObserverGameDetails ho : obs)
 				ho.updateFrameHealth();
 		}
 		
-		public void addObserver(ObserverDetails observer){
+		public void addObserver(ObserverGameDetails observer){
 			this.obs.add(observer);		
 		}
 }

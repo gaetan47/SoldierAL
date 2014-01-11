@@ -17,4 +17,6 @@ public interface ArmedUnit {
 	public void addEquipment(String weaponType);  
 	public void accept(VisitorClassicForArmedUnit v);
 	public <T> T accept(VisitorFunForArmedUnit<T> v);
+	
+	
 }

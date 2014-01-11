@@ -11,14 +11,20 @@ import pacman.entity.Hero;
 
 public class GameDetailsFrame extends JFrame{
 	
-	private JLabel heroHealth,heroHealth2;
+	private JLabel heroHealth,heroForce; // Label "Hero Life", label "Force"
+	private JLabel numberHp; // Points de vie restant
+	private JLabel maxNumberHp; // Points de vie maximum
+	private JLabel numberForceHero; // Puissance héro
 
-
-	private Hero h;
+	private float healthpoint;
+	private float maxHealthPoint;
+	private float forceHero;
 	
-	public GameDetailsFrame(Hero h){
+	public GameDetailsFrame(float healthpoint,float maxHealthPoint, float forceHero){
 		super();
-		this.h =h;
+		this.healthpoint = healthpoint;
+		this.maxHealthPoint = maxHealthPoint;
+		this.forceHero = forceHero;
 		build();
 	}
 	
@@ -27,13 +33,25 @@ public class GameDetailsFrame extends JFrame{
 		
 		
 		
-		heroHealth = new JLabel("HeroLife");
-		heroHealth.setBounds(10, 10, 100, 10);
+		heroHealth = new JLabel("HeroLife :");
+		heroHealth.setBounds(10, 10, 80, 10);
 		add(heroHealth);
 		
-		heroHealth2 = new JLabel(""+h.getHealthPointUnit());
-		heroHealth2.setBounds(110, 10, 100, 10);
-		add(heroHealth2);
+		heroForce = new JLabel("Force :");
+		heroForce.setBounds(10, 30, 80, 10);
+		add(heroForce);
+		
+		numberHp = new JLabel(""+healthpoint);
+		numberHp.setBounds(90, 10, 50, 10);
+		add(numberHp);
+		
+		maxNumberHp = new JLabel("/ "+maxHealthPoint);
+		maxNumberHp.setBounds(140, 10, 50, 10);
+		add(maxNumberHp);
+		
+		numberForceHero = new JLabel(""+ forceHero);
+		numberForceHero.setBounds(90, 30, 80, 10);
+		add(numberForceHero);
 		
 		
 		
@@ -46,7 +64,7 @@ public class GameDetailsFrame extends JFrame{
 	}
 	
 	public JLabel getHeroHealth2() {
-		return heroHealth2;
+		return numberHp;
 	}
 	
 	
