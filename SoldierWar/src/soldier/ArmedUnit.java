@@ -1,5 +1,8 @@
 package soldier;
 
+import java.util.HashMap;
+
+import pacman.entity.Enemy;
 import utils.VisitorClassicForArmedUnit;
 import utils.VisitorFunForArmedUnit;
 import utils.AgeFactory;
@@ -17,6 +20,7 @@ public interface ArmedUnit {
 	public void addEquipment(String weaponType);  
 	public void accept(VisitorClassicForArmedUnit v);
 	public <T> T accept(VisitorFunForArmedUnit<T> v);
-	
+	public int numberOfFriend();
+	public HashMap<String, Float> getHealthAndName();
 	
 }

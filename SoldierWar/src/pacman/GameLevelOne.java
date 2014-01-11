@@ -72,8 +72,8 @@ public class GameLevelOne extends GameLevelDefaultImpl {
 			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 } };
 
 	public static final int SPRITE_SIZE = 16;
-	public static final int NUMBER_OF_ENEMIES = 5;
-	public static int HERO_LIFE = 200;
+	public static final int NUMBER_OF_ENEMIES = 7;
+	public static int HERO_LIFE = 100000;
 	public static int BOSS_LIFE = 400;
 
 	@Override
@@ -151,12 +151,14 @@ public class GameLevelOne extends GameLevelDefaultImpl {
 			MoveStrategyRandom ranStr = new MoveStrategyRandom();
 			ghostDriv.setStrategy(ranStr);
 			ghostDriv.setmoveBlockerChecker(moveBlockerChecker);
+
 			if (t < 6){ // on crée une armée
 				enemy = new Enemy(canvas, age, "Simple", "totoArmy"+t, 3);
 				
 			}else{
 				enemy = new Enemy(canvas, age, "Simple", "toto"+t);
 			}
+
 			enemy.setDriver(ghostDriv);
 			// TODO : changer la position des ennemis ici
 			enemy.setPosition(new Point(14 * SPRITE_SIZE, 15 * SPRITE_SIZE));

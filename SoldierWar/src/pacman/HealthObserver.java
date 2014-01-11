@@ -4,7 +4,9 @@ import java.util.Observable;
 
 import javax.swing.JLabel;
 
+import pacman.entity.Enemy;
 import pacman.entity.Hero;
+import soldier.ArmedUnit;
 
 public class HealthObserver extends Observable implements ObserverGameDetails {
 	
@@ -29,6 +31,18 @@ public class HealthObserver extends Observable implements ObserverGameDetails {
 
 	@Override
 	public void updateFrameForceHero() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateFrameFriends(Enemy enemy) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateFrameFriendHealth(ArmedUnit enemy) {
 		// TODO Auto-generated method stub
 		
 	}
