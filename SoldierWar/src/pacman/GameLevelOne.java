@@ -143,7 +143,7 @@ public class GameLevelOne extends GameLevelDefaultImpl {
 			MoveStrategyRandom ranStr = new MoveStrategyRandom();
 			ghostDriv.setStrategy(ranStr);
 			ghostDriv.setmoveBlockerChecker(moveBlockerChecker);
-			enemy = new Enemy(canvas, new MiddleAgeFactory(), "Simple", "toto");
+			enemy = new Enemy(canvas, age, "Simple", "toto");
 			enemy.setDriver(ghostDriv);
 			// TODO : changer la position des ennemis ici
 			enemy.setPosition(new Point(14 * SPRITE_SIZE, 15 * SPRITE_SIZE));

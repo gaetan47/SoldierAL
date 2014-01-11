@@ -10,9 +10,15 @@ public class Enemy extends AbstractEntity {
 	public Enemy (Canvas defaultCanvas, AgeFactory factory, String name){
 		super(defaultCanvas, factory,name);
 	}
+	
 	//Ennemi seul
 	public Enemy (Canvas defaultCanvas, AgeFactory factory, String soldatType, String name){
 		super(defaultCanvas, factory,soldatType,name);
+	}
+	
+	// on régénère l'unitée
+	public void heal() {  
+		unit.heal();
 	}
 	
 }

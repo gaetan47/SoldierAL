@@ -31,7 +31,7 @@ public abstract class AbstractEntity extends GameMovable implements Drawable, Ga
 		private final SpriteManagerDefaultImpl spriteManager;
 		public static final int RENDERING_SIZE = 16;
 
-		private ArmedUnit unit;
+		protected ArmedUnit unit;
 		
 		// Constructeur pour un h�ro ou boss (Super)
 		public AbstractEntity(Canvas defaultCanvas, AgeFactory factory, String soldatType, String name
