@@ -70,8 +70,8 @@ public class GameLevelOne extends GameLevelDefaultImpl {
 			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 } };
 
 	public static final int SPRITE_SIZE = 16;
-	public static final int NUMBER_OF_ENEMIES = 5;
-	public static int HERO_LIFE = 200;
+	public static final int NUMBER_OF_ENEMIES = 7;
+	public static int HERO_LIFE = 100000;
 	public static int BOSS_LIFE = 400;
 
 	@Override

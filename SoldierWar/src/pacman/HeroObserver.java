@@ -48,9 +48,20 @@ public class HeroObserver extends Observable implements ObserverGameDetails {
 		HashMap<String, Float> tmpMap = enemy.getHealthAndName();
 		JLabel tmpLife [] =frame.getLifeFriendArmy();
 		JLabel tmpName[] = frame.getNameFriendArmy();
+		JLabel tmpForce [] =frame.getForceFriendArmy();
 		for (int i =0;i<6; i++){
+		
 			if ( tmpMap.containsKey(tmpName[i].getText())){
-				tmpLife[i].setText(""+tmpMap.get(tmpName[i].getText()));
+				if (tmpMap.get(tmpName[i].getText())<= 0){
+					tmpLife[i].setText("");
+					tmpName[i].setText("No Army");
+					tmpForce[i].setText("");
+					
+				}
+				else{
+					tmpLife[i].setText(""+tmpMap.get(tmpName[i].getText()));
+				}
+				
 			}
 		}
 		

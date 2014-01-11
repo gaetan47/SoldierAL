@@ -20,6 +20,8 @@ public class GameDetailsFrame extends JFrame{
 	private JLabel nameFriendArmy[];
 	private JLabel forceFriendArmy[];
 
+	
+
 	private float healthpoint;
 	private float maxHealthPoint;
 	private float forceHero;
@@ -54,7 +56,7 @@ public class GameDetailsFrame extends JFrame{
 		add(numberHp);
 		
 		maxNumberHp = new JLabel("/ "+maxHealthPoint);
-		maxNumberHp.setBounds(140, 10, 50, 10);
+		maxNumberHp.setBounds(140, 10, 60, 10);
 		add(maxNumberHp);
 		
 		numberForceHero = new JLabel(""+ forceHero);
@@ -104,17 +106,17 @@ public class GameDetailsFrame extends JFrame{
 		JPanel p = new JPanel();
 		p.setLayout(null);
 		JLabel label = new JLabel("No army");
-		label.setBounds(10, 0, 100, 15);
+		label.setBounds(10, 0, 100,20);
 		nameFriendArmy[id] = label;
 		JLabel label2 = new JLabel("Life :");
-		label2.setBounds(10, 30, 50, 10);
+		label2.setBounds(10, 30, 50, 15);
 		JLabel label4 = new JLabel("");
-		label4.setBounds(70, 30, 60, 10);
+		label4.setBounds(70, 30, 60, 15);
 		lifeFriendArmy[id] = label4;
 		JLabel label3 = new JLabel("Force :");
-		label3.setBounds(10, 70, 50, 10);
+		label3.setBounds(10, 60, 50, 15);
 		JLabel label5 = new JLabel("");
-		label5.setBounds(70, 70, 50, 10);
+		label5.setBounds(70, 60, 50, 15);
 		forceFriendArmy[id] = label5;
 		p.add(label);
 		p.add(label2);
@@ -147,8 +149,6 @@ public class GameDetailsFrame extends JFrame{
 	public void setNameFriendArmy(JLabel[] nameFriendArmy) {
 		this.nameFriendArmy = nameFriendArmy;
 	}
-	
-
 	public JLabel[] getForceFriendArmy() {
 		return forceFriendArmy;
 	}
@@ -156,6 +156,8 @@ public class GameDetailsFrame extends JFrame{
 	public void setForceFriendArmy(JLabel[] forceFriendArmy) {
 		this.forceFriendArmy = forceFriendArmy;
 	}
+	
+	
 	
 
 }
