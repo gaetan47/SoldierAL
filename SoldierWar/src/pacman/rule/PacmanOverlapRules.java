@@ -114,19 +114,17 @@ public class PacmanOverlapRules extends OverlapRulesApplierDefaultImpl {
 	
 	public void overlapRule (Hero hero, Heart heart){
 		//TODO : d�finir (pour le moment 50) le nombre de HP � rajouter
-		if (hero.getMaxHealthPointUnit() - hero.getHealthPointUnit() <= 50){
-			 hero.addHealthPoint(hero.getMaxHealthPointUnit() - hero.getHealthPointUnit());
+		if (hero.getMaxHealthPointHero() - hero.getHealthPointHero() <= 50){
+			 hero.addHealthPointHero(hero.getMaxHealthPointHero() - hero.getHealthPointHero());
 		}
 		else{
-			 hero.addHealthPoint(50);
+			 hero.addHealthPointHero(50);
 		}
-		System.out.println(hero.getHealthPointUnit() + " Hp / "+hero.getMaxHealthPointUnit() + " Hp\n");
 		universe.removeGameEntity(heart);
 	}
 	
 	public void overlapRule (Hero h, SuperHeart spg){
-		h.addHealthPoint(-30);
-		System.out.println(h.getHealthPointUnit() + " Hp / "+h.getMaxHealthPointUnit() + " Hp\n");
+		h.addHealthPointHero(-30);
 		universe.removeGameEntity(spg);
 	}
 

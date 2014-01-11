@@ -6,7 +6,7 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 
-import pacman.HealthObserver;
+import pacman.HeroObserver;
 import pacman.ObserverGameDetails;
 
 import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
@@ -142,7 +142,7 @@ public abstract class AbstractEntity extends GameMovable implements Drawable, Ga
 		public void addHealthPoint(float f){
 			unit.addHealthPoints(f);
 			for (ObserverGameDetails ho : obs)
-				ho.updateFrameHealth();
+				ho.updateFrameHeroHealth();
 			
 		}
 		
@@ -153,7 +153,7 @@ public abstract class AbstractEntity extends GameMovable implements Drawable, Ga
 		public void parry(float force){
 			unit.parry(force);
 			for (ObserverGameDetails ho : obs)
-				ho.updateFrameHealth();
+				ho.updateFrameHeroHealth();
 		}
 		
 		public void addObserver(ObserverGameDetails observer){

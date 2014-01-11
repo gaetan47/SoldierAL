@@ -16,6 +16,7 @@ public class GameDetailsFrame extends JFrame{
 	private JLabel maxNumberHp; // Points de vie maximum
 	private JLabel numberForceHero; // Puissance héro
 
+
 	private float healthpoint;
 	private float maxHealthPoint;
 	private float forceHero;
@@ -66,6 +67,11 @@ public class GameDetailsFrame extends JFrame{
 	public JLabel getHeroHealth2() {
 		return numberHp;
 	}
+	
+	public JLabel getNumberForceHero() {
+		return numberForceHero;
+	}
+
 	
 	
 

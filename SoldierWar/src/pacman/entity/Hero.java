@@ -2,6 +2,8 @@ package pacman.entity;
 
 import java.awt.Canvas;
 
+import pacman.ObserverGameDetails;
+
 import soldier.ArmedUnit;
 import soldier.ArmedUnitSquad;
 import sun.management.counter.Units;
@@ -28,5 +30,37 @@ public class Hero extends AbstractEntity {
 		}
 		// la visibilitée de "unit" dans AbstractEntity est protected on y a alors accès directement
 		((ArmedUnitSquad)unit).addUnit(enemy.unit);
+		for (ObserverGameDetails ho : obs)
+			ho.updateFrameForceHero();
 	}
+	
+	public float getHealthPointHero(){
+		if (hero == null){
+			return getHealthPointUnit();
+		}
+		else{
+			return hero.getHealthPoints();
+		}
+	}
+	
+	public float getMaxHealthPointHero(){
+		if (hero == null){
+			return getMaxHealthPointUnit();
+		}
+		else{
+			return hero.getMaxHealthPoints();
+		}
+	}
+	
+	public void addHealthPointHero(float healthPoint){
+		if (hero == null){
+		 addHealthPoint(healthPoint);
+		}
+		else{
+		 hero.addHealthPoints(healthPoint);
+		}
+		for (ObserverGameDetails ho : obs)
+			ho.updateFrameHeroHealth();
+	}
+	
 }

@@ -2,6 +2,7 @@ package pacman;
 
 public interface ObserverGameDetails {
 
-	public void updateFrameHealth();
+	public void updateFrameHeroHealth();
+	public void updateFrameForceHero();
 	
 }
