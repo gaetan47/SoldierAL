@@ -96,15 +96,13 @@ public class PacmanOverlapRules extends OverlapRulesApplierDefaultImpl {
 				hero.parry(enemy.strike());
 				enemy.parry(hero.strike());
 			}
-			System.out.println("Vie du Héro : " + hero.getHealthPointUnit() + "/" + hero.getMaxHealthPointUnit()+"\n");
-			System.out.println("Vie de l'Ennemi : " + enemy.getHealthPointUnit() + "/" + enemy.getMaxHealthPointUnit()+"\n");
+		
 		}
 		if (hero.getHealthPointUnit() > 0){
-			System.out.println("le héro "+ hero.strike());
+			
 			enemy.heal();
 			hero.addEntity(enemy);
 			universe.removeGameEntity(enemy);
-			System.out.println("l'enemy est ajouté au héro "+ hero.strike());
 		}else{
 			universe.removeGameEntity(hero);
 		}

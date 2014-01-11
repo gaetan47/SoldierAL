@@ -154,9 +154,21 @@ public abstract class AbstractEntity extends GameMovable implements Drawable, Ga
 			unit.parry(force);
 			for (ObserverGameDetails ho : obs)
 				ho.updateFrameHeroHealth();
+			if (unit.getClass() == ArmedUnitSquad.class){
+				for (ObserverGameDetails ho : obs){
+					ho.updateFrameFriendHealth(unit);
+				}
+			}
 		}
 		
 		public void addObserver(ObserverGameDetails observer){
 			this.obs.add(observer);		
 		}
+		
+		public String getName(){
+			return unit.getName();
+		}
+		
+	
+	
 }

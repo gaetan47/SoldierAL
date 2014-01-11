@@ -30,8 +30,10 @@ public class Hero extends AbstractEntity {
 		}
 		// la visibilitée de "unit" dans AbstractEntity est protected on y a alors accès directement
 		((ArmedUnitSquad)unit).addUnit(enemy.unit);
-		for (ObserverGameDetails ho : obs)
+		for (ObserverGameDetails ho : obs){
 			ho.updateFrameForceHero();
+			ho.updateFrameFriends(enemy);
+		}
 	}
 	
 	public float getHealthPointHero(){
@@ -61,6 +63,10 @@ public class Hero extends AbstractEntity {
 		}
 		for (ObserverGameDetails ho : obs)
 			ho.updateFrameHeroHealth();
+	}
+	
+	public int numberOfFriend(){
+		return unit.numberOfFriend();
 	}
 	
 }

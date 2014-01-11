@@ -2,7 +2,10 @@ package soldier;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+
+import pacman.entity.Enemy;
 
 import utils.*;
 
@@ -103,6 +106,19 @@ public class ArmedUnitSoldier extends ObservableAbstract<ArmedUnit> implements
 	public <T> T accept(VisitorFunForArmedUnit<T> v) {
 		return v.visit(this);
 	}
+
+	@Override
+	public int numberOfFriend() {
+		return 0;
+	}
+
+	@Override
+	public HashMap<String, Float> getHealthAndName() {
+		// TODO Auto-generated method stub
+		return new HashMap<String, Float>();
+	}
+
+	
 	
 	
 

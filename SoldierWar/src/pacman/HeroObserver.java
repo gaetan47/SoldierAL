@@ -1,10 +1,14 @@
 package pacman;
 
+import java.util.HashMap;
 import java.util.Observable;
 
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
+import pacman.entity.Enemy;
 import pacman.entity.Hero;
+import soldier.ArmedUnit;
 
 public class HeroObserver extends Observable implements ObserverGameDetails {
 	
@@ -25,6 +29,32 @@ public class HeroObserver extends Observable implements ObserverGameDetails {
 		frame.getNumberForceHero().setText(""+h.strike());
 	}
 	
+	public void updateFrameFriends(Enemy enemy){
+		JLabel tmpName[] = frame.getNameFriendArmy();
+		JLabel tmpLife [] =frame.getLifeFriendArmy();
+		JLabel tmpForce [] =frame.getForceFriendArmy();
+		for (int i =0;i<6; i++){
+			if (tmpLife[i].getText() == ""){
+				tmpName[i].setText(enemy.getName());
+				tmpForce[i].setText(""+enemy.strike());
+				tmpLife[i].setText(""+enemy.getHealthPointUnit());
+				break;
+			}
+		}
+		
+	}
+	
+	public void updateFrameFriendHealth(ArmedUnit enemy){
+		HashMap<String, Float> tmpMap = enemy.getHealthAndName();
+		JLabel tmpLife [] =frame.getLifeFriendArmy();
+		JLabel tmpName[] = frame.getNameFriendArmy();
+		for (int i =0;i<6; i++){
+			if ( tmpMap.containsKey(tmpName[i].getText())){
+				tmpLife[i].setText(""+tmpMap.get(tmpName[i].getText()));
+			}
+		}
+		
+	}
 	
 
 }

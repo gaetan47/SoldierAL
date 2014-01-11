@@ -1,7 +1,10 @@
 package soldier;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+
+import pacman.entity.Enemy;
 
 import utils.AgeFactory;
 import utils.ObservableAbstract;
@@ -120,6 +123,20 @@ public class ArmedUnitSquad extends ObservableAbstract<ArmedUnit> implements
 	public void addHealthPoints(float f) {
 		for (ArmedUnit s : armedUnitList)
 			s.addHealthPoints(f);
+	}
+
+	@Override
+	public int numberOfFriend() {
+		
+		return armedUnitList.size();
+	}
+	
+	public HashMap<String, Float> getHealthAndName(){
+		HashMap<String, Float> map = new HashMap<String, Float>();
+		for (ArmedUnit a : armedUnitList){
+			map.put(a.getName(), a.getHealthPoints());
+		}
+		return map;
 	}
 	
 }
