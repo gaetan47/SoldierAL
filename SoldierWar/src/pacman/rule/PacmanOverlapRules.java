@@ -30,6 +30,7 @@ public class PacmanOverlapRules extends OverlapRulesApplierDefaultImpl {
 	private final ObservableValue<Boolean> endOfGame;
 	private int totalNbGums = 0;
 	private int nbEatenGums = 0;
+	protected boolean managePacmanDeath;
 
 	public PacmanOverlapRules(Point pacPos, Point gPos,
 			ObservableValue<Integer> life, ObservableValue<Integer> score,
@@ -52,6 +53,7 @@ public class PacmanOverlapRules extends OverlapRulesApplierDefaultImpl {
 
 	@Override
 	public void applyOverlapRules(Vector<Overlap> overlappables) {
+		managePacmanDeath = true;
 		super.applyOverlapRules(overlappables);
 	}	
 
@@ -105,6 +107,7 @@ public class PacmanOverlapRules extends OverlapRulesApplierDefaultImpl {
 			universe.removeGameEntity(enemy);
 		}else{
 			universe.removeGameEntity(hero);
+			managePacmanDeath = false;
 		}
 			
 	}

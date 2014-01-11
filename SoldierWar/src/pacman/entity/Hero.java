@@ -3,22 +3,19 @@ package pacman.entity;
 import java.awt.Canvas;
 
 import pacman.ObserverGameDetails;
-
 import soldier.ArmedUnit;
 import soldier.ArmedUnitSquad;
-import sun.management.counter.Units;
 import utils.AgeFactory;
-import utils.MiddleAgeFactory;
 
 public class Hero extends AbstractEntity {
-	private static ArmedUnit heroSquad;
-	private static ArmedUnit hero;
-	
+	private ArmedUnit heroSquad;
+	private ArmedUnit hero;
+
 	public Hero (Canvas defaultCanvas, AgeFactory factory, String soldatType, String name
 			,int healthPoint,int force){
 		super(defaultCanvas, factory,soldatType, name,healthPoint,force);
 	}
-	
+
 	public void addEntity(Enemy enemy){
 		// get singleton
 		if (heroSquad == null){
@@ -35,7 +32,7 @@ public class Hero extends AbstractEntity {
 			ho.updateFrameFriends(enemy);
 		}
 	}
-	
+
 	public float getHealthPointHero(){
 		if (hero == null){
 			return getHealthPointUnit();
@@ -44,7 +41,7 @@ public class Hero extends AbstractEntity {
 			return hero.getHealthPoints();
 		}
 	}
-	
+
 	public float getMaxHealthPointHero(){
 		if (hero == null){
 			return getMaxHealthPointUnit();
@@ -53,20 +50,16 @@ public class Hero extends AbstractEntity {
 			return hero.getMaxHealthPoints();
 		}
 	}
-	
+
 	public void addHealthPointHero(float healthPoint){
 		if (hero == null){
-		 addHealthPoint(healthPoint);
+			addHealthPoint(healthPoint);
 		}
 		else{
-		 hero.addHealthPoints(healthPoint);
+			hero.addHealthPoints(healthPoint);
 		}
 		for (ObserverGameDetails ho : obs)
 			ho.updateFrameHeroHealth();
 	}
-	
-	public int numberOfFriend(){
-		return unit.numberOfFriend();
-	}
-	
+
 }
