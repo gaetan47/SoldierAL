@@ -21,4 +21,16 @@ public class HealthObserver extends Observable implements ObserverGameDetails {
 		l.setText(""+h.getHealthPointUnit());
 	}
 
+	@Override
+	public void updateFrameHeroHealth() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateFrameForceHero() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

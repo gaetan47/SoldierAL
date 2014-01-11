@@ -1,26 +1,23 @@
 package pacman.entity;
 
-import java.awt.Canvas;
-import java.awt.Graphics;
-import java.awt.Point;
-import java.awt.Rectangle;
-import java.util.ArrayList;
-
-import pacman.HeroObserver;
-import pacman.ObserverGameDetails;
-
-import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
-
-import soldier.ArmedUnit;
-import soldier.ArmedUnitSoldier;
-import soldier.ArmedUnitSquad;
-import utils.AgeFactory;
 import gameframework.base.Drawable;
 import gameframework.base.DrawableImage;
 import gameframework.base.Overlappable;
 import gameframework.game.GameEntity;
 import gameframework.game.GameMovable;
 import gameframework.game.SpriteManagerDefaultImpl;
+
+import java.awt.Canvas;
+import java.awt.Graphics;
+import java.awt.Point;
+import java.awt.Rectangle;
+import java.util.ArrayList;
+
+import pacman.ObserverGameDetails;
+import soldier.ArmedUnit;
+import soldier.ArmedUnitSoldier;
+import soldier.ArmedUnitSquad;
+import utils.AgeFactory;
 
 public abstract class AbstractEntity extends GameMovable implements Drawable, GameEntity,
 	Overlappable {
@@ -33,7 +30,7 @@ public abstract class AbstractEntity extends GameMovable implements Drawable, Ga
 
 		protected ArmedUnit unit;
 		
-		// Constructeur pour un h�ro ou boss (Super)
+		// Constructeur pour un héro ou boss (Super)
 		public AbstractEntity(Canvas defaultCanvas, AgeFactory factory, String soldatType, String name
 				,int healthPoint,int force) {
 			unit = new ArmedUnitSoldier(factory, soldatType, name,healthPoint,force);
@@ -53,7 +50,7 @@ public abstract class AbstractEntity extends GameMovable implements Drawable, Ga
 		}
 		
 		
-		// Constructeur pour un soldat (un param��tre de plus)
+		// Constructeur pour un soldat (un paramètre de plus)
 		public AbstractEntity(Canvas defaultCanvas, AgeFactory factory, String soldatType, String name) {
 			unit = new ArmedUnitSoldier(factory, soldatType, name);
 			// TODO : changer l'image
@@ -71,9 +68,14 @@ public abstract class AbstractEntity extends GameMovable implements Drawable, Ga
 					"unused");
 		}
 
-		// Constructeur pour une arm��e
-		public AbstractEntity(Canvas defaultCanvas, AgeFactory factory, String name) {
+		// Constructeur pour une armée
+		public AbstractEntity(Canvas defaultCanvas, AgeFactory factory, String soldatType, String name, int numberOfSoldiers) {
 			unit = new ArmedUnitSquad(factory, name);
+			// On remplit l'armée 
+			for (int i = 0; i < numberOfSoldiers; i++){
+				ArmedUnit soldier = new ArmedUnitSoldier(factory, soldatType, name+"Solider"+i);
+				((ArmedUnitSquad)unit).addUnit(soldier);
+			}
 			// TODO : changer l'image
 			spriteManager = new SpriteManagerDefaultImpl("images/ghost.gif",
 					defaultCanvas, RENDERING_SIZE, 6);
