@@ -16,7 +16,9 @@ import pacman.entity.Enemy;
 import pacman.entity.Hero;
 import pacman.entity.Jail;
 import pacman.entity.Heart;
+import pacman.entity.Shield;
 import pacman.entity.SuperHeart;
+import pacman.entity.Sword;
 import pacman.entity.TeleportPairOfPoints;
 
 public class PacmanOverlapRules extends OverlapRulesApplierDefaultImpl {
@@ -91,7 +93,7 @@ public class PacmanOverlapRules extends OverlapRulesApplierDefaultImpl {
 			// On choisit aléatoirement si notre héro ou l'ennemi commence à attaquer
 			isHeroFirst = random.nextBoolean();
 			if (isHeroFirst){
-				
+
 				enemy.parry(hero.strike());
 				hero.parry(enemy.strike());
 			}else{
@@ -111,30 +113,31 @@ public class PacmanOverlapRules extends OverlapRulesApplierDefaultImpl {
 			universe.removeGameEntity(hero);
 			managePacmanDeath = false;
 		}
-			
+
 	}
-		
-	
+
+
 	public void overlapRule (Hero hero, Heart heart){
 		//TODO : d�finir (pour le moment 50) le nombre de HP � rajouter
 		if (hero.getMaxHealthPointHero() - hero.getHealthPointHero() <= 50){
-			 hero.addHealthPointHero(hero.getMaxHealthPointHero() - hero.getHealthPointHero());
+			hero.addHealthPointHero(hero.getMaxHealthPointHero() - hero.getHealthPointHero());
 		}
 		else{
-			 hero.addHealthPointHero(50);
+			hero.addHealthPointHero(50);
 		}
 		universe.removeGameEntity(heart);
 	}
-	
+
 	public void overlapRule (Hero h, SuperHeart spg){
 		h.addHealthPointHero(-30);
 		universe.removeGameEntity(spg);
 	}
 
-	private void pacgumEatenHandler() {
-		nbEatenGums++;
-		if (nbEatenGums >= totalNbGums) {
-			endOfGame.setValue(true);
-		}
+	public void overlapRule (Hero hero, Sword sword){
+		
+	}
+
+	public void overlapRule (Hero hero, Shield sword){
+
 	}
 }
