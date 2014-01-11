@@ -103,5 +103,7 @@ public class ArmedUnitSoldier extends ObservableAbstract<ArmedUnit> implements
 	public <T> T accept(VisitorFunForArmedUnit<T> v) {
 		return v.visit(this);
 	}
+	
+	
 
 }

@@ -16,4 +16,5 @@ public interface Soldier {
 	
 	public int getMaxHealthPoints();
 	public void setMaxHealthPoints(int maxHealthPoints);
+
 }
