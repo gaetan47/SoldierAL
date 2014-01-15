@@ -73,7 +73,7 @@ public class FightTest {
 		
 		Random random = new Random();
 		boolean isHeroFirst;
-		while (hero.getHealthPointHero() > 0 && enemy.getHealthPointUnit() > 0){
+		while (hero.getHealthPointsHero() > 0 && enemy.getHealthPointsUnit() > 0){
 			// On choisit aléatoirement si notre héros ou l'ennemi commence à attaquer
 			isHeroFirst = random.nextBoolean();
 			if (isHeroFirst){
@@ -83,12 +83,12 @@ public class FightTest {
 				hero.parry(enemy.strike());
 				enemy.parry(hero.strike());
 			}
-			System.out.println("Vie du Héro : " + hero.getHealthPointHero() + "/" + hero.getMaxHealthPointHero()+"\n");
-			System.out.println("Vie de l'Ennemi : " + enemy.getHealthPointUnit() + "/" + enemy.getMaxHealthPointUnit()+"\n");
+			System.out.println("Vie du Héro : " + hero.getHealthPointsHero() + "/" + hero.getMaxHealthPointsHero()+"\n");
+			System.out.println("Vie de l'Ennemi : " + enemy.getHealthPointsUnit() + "/" + enemy.getMaxHealthPointUnit()+"\n");
 		}
-		System.out.println("Vie du Héro final : " + hero.getHealthPointHero() + "/" + hero.getMaxHealthPointHero()+"\n");
-		System.out.println("Vie de l'Ennemi final: " + enemy.getHealthPointUnit() + "/" + enemy.getMaxHealthPointUnit()+"\n");
-		if (!(hero.getHealthPointHero() == 0 && enemy.getHealthPointUnit() >= 0) && !(hero.getHealthPointHero() >= 0 && enemy.getHealthPointUnit() == 0)){
+		System.out.println("Vie du Héro final : " + hero.getHealthPointsHero() + "/" + hero.getMaxHealthPointsHero()+"\n");
+		System.out.println("Vie de l'Ennemi final: " + enemy.getHealthPointsUnit() + "/" + enemy.getMaxHealthPointUnit()+"\n");
+		if (!(hero.getHealthPointsHero() == 0 && enemy.getHealthPointsUnit() >= 0) && !(hero.getHealthPointsHero() >= 0 && enemy.getHealthPointsUnit() == 0)){
 			Assert.fail("Le résultat du combat n'est pas correct");
 		}
 	}	
@@ -107,24 +107,24 @@ public class FightTest {
 		Assert.assertEquals(15, enemyStrength, 0.5);
 		overlapRules.overlapRule(hero, enemy);
 		// on mémorise le nombre de points de vie du héros
-		float heroPV = hero.getHealthPointHero();
+		float heroPV = hero.getHealthPointsHero();
 		// La force de l'ennemi viens s'ajouter à celle du héros
 		Assert.assertEquals(35, hero.strike(), 0.5);
 		// l'ennemi est régénéré aprés le combat pour être ajouté a l'armée du héros
 		Assert.assertEquals(100, enemy.getMaxHealthPointUnit(), 0.5);
-		Assert.assertEquals(100, enemy.getHealthPointUnit(), 0.5);
+		Assert.assertEquals(100, enemy.getHealthPointsUnit(), 0.5);
 		// La vie totale est celle que possédais le hero + la vie de base de l'ennemi (100)
-		Assert.assertEquals(heroPV+100, hero.getHealthPointUnit(), 0.5);
+		Assert.assertEquals(heroPV+100, hero.getHealthPointsUnit(), 0.5);
 		
 
 	}
 
 	@Test
 	public void getHealthPointsTest(){
-		Assert.assertEquals(200, hero.getHealthPointUnit(), 0.5);
-		Assert.assertEquals(200, hero.getHealthPointHero(), 0.5);
+		Assert.assertEquals(200, hero.getHealthPointsUnit(), 0.5);
+		Assert.assertEquals(200, hero.getHealthPointsHero(), 0.5);
 		hero.addEntity(enemy);
-		Assert.assertEquals(300, hero.getHealthPointUnit(), 0.5);
-		Assert.assertEquals(200, hero.getHealthPointHero(), 0.5);
+		Assert.assertEquals(300, hero.getHealthPointsUnit(), 0.5);
+		Assert.assertEquals(200, hero.getHealthPointsHero(), 0.5);
 	}
 }

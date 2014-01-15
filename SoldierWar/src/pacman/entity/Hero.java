@@ -33,16 +33,16 @@ public class Hero extends AbstractEntity {
 		}
 	}
 
-	public float getHealthPointHero(){
+	public float getHealthPointsHero(){
 		if (hero == null){
-			return getHealthPointUnit();
+			return getHealthPointsUnit();
 		}
 		else{
 			return hero.getHealthPoints();
 		}
 	}
 
-	public float getMaxHealthPointHero(){
+	public float getMaxHealthPointsHero(){
 		if (hero == null){
 			return getMaxHealthPointUnit();
 		}
@@ -51,9 +51,9 @@ public class Hero extends AbstractEntity {
 		}
 	}
 
-	public void addHealthPointHero(float healthPoint){
+	public void addHealthPointsHero(float healthPoint){
 		if (hero == null){
-			addHealthPoint(healthPoint);
+			addHealthPoints(healthPoint);
 		}
 		else{
 			hero.addHealthPoints(healthPoint);

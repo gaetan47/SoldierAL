@@ -133,7 +133,7 @@ public abstract class AbstractEntity extends GameMovable implements Drawable, Ga
 			return (new Rectangle(0, 0, RENDERING_SIZE, RENDERING_SIZE));
 		}
 		
-		public float getHealthPointUnit() {
+		public float getHealthPointsUnit() {
 			return unit.getHealthPoints();
 		}
 
@@ -141,11 +141,15 @@ public abstract class AbstractEntity extends GameMovable implements Drawable, Ga
 			return unit.getMaxHealthPoints();
 		}
 		
-		public void addHealthPoint(float f){
+		public void addHealthPoints(float f){
 			unit.addHealthPoints(f);
 			for (ObserverGameDetails ho : obs)
 				ho.updateFrameHeroHealth();
 			
+		}
+		
+		public void addEquipment(String weaponType) {
+			unit.addEquipment(weaponType);
 		}
 		
 		public float strike(){

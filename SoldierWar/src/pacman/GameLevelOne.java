@@ -3,6 +3,8 @@ package pacman;
 import gameframework.base.MoveStrategyKeyboard;
 import gameframework.base.MoveStrategyRandom;
 import gameframework.base.ObservableValue;
+import gameframework.base.SpeedVector;
+import gameframework.base.SpeedVectorDefaultImpl;
 import gameframework.game.CanvasDefaultImpl;
 import gameframework.game.Game;
 import gameframework.game.GameLevelDefaultImpl;
@@ -16,7 +18,11 @@ import gameframework.game.OverlapProcessorDefaultImpl;
 
 import java.awt.Canvas;
 import java.awt.Point;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
+import pacman.entity.Boss;
 import pacman.entity.Enemy;
 import pacman.entity.Heart;
 import pacman.entity.Hero;
@@ -26,7 +32,7 @@ import pacman.entity.SuperHeart;
 import pacman.entity.Sword;
 import pacman.entity.TeleportPairOfPoints;
 import pacman.entity.Wall;
-import pacman.rule.GhostMovableDriver;
+import pacman.rule.BossMovableDriver;
 import pacman.rule.PacmanMoveBlockers;
 import pacman.rule.PacmanOverlapRules;
 import utils.AgeFactory;
@@ -72,9 +78,11 @@ public class GameLevelOne extends GameLevelDefaultImpl {
 			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 } };
 
 	public static final int SPRITE_SIZE = 16;
-	public static final int NUMBER_OF_ENEMIES = 7;
-	public static int HERO_LIFE = 100000;
-	public static int BOSS_LIFE = 400;
+	public static final int NUMBER_OF_ENEMIES = 6;
+	public static int HERO_LIFE = 10000;
+	public static int HERO_STRENGTH = 50;
+	public static int BOSS_LIFE = 2000;
+	public static int BOSS_STRENGTH = 200;
 
 	@Override
 	protected void init() {
@@ -129,9 +137,9 @@ public class GameLevelOne extends GameLevelDefaultImpl {
 		
 		
 		
-		/*Création du héro*/
+		/* Création du héro */
 		AgeFactory age = new MiddleAgeFactory();
-		Hero myHero = new Hero(canvas, age, "Super", "Link", HERO_LIFE, 50);
+		Hero myHero = new Hero(canvas, age, "Super", "Link", HERO_LIFE, HERO_STRENGTH);
 		
 		GameMovableDriverDefaultImpl pacDriver = new GameMovableDriverDefaultImpl();
 		MoveStrategyKeyboard keyStr = new MoveStrategyKeyboard();
@@ -141,27 +149,51 @@ public class GameLevelOne extends GameLevelDefaultImpl {
 		myHero.setDriver(pacDriver);
 		myHero.setPosition(new Point(14 * SPRITE_SIZE, 17 * SPRITE_SIZE));
 		universe.addGameEntity(myHero);
-		GameDetailsFrame frame = new GameDetailsFrame(myHero.getHealthPointHero(),myHero.getMaxHealthPointUnit(),myHero.strike());
-		myHero.addObserver(new HeroObserver(frame,myHero));
+		GameDetailsFrame frame = new GameDetailsFrame(myHero.getHealthPointsHero(), myHero.getMaxHealthPointUnit(), myHero.strike());
+		myHero.addObserver(new HeroObserver(frame, myHero));
 
+		
+		/* Création du boss */		
+		Boss boss = new Boss(canvas, age, "Super", "Ganondorf", BOSS_LIFE, BOSS_STRENGTH);
+		GameMovableDriverDefaultImpl bossDriv = new BossMovableDriver();
+		MoveStrategyRandom ranStr = new MoveStrategyRandom();
+		bossDriv.setStrategy(ranStr);
+		bossDriv.setmoveBlockerChecker(moveBlockerChecker);
+		((BossMovableDriver)bossDriv).setSpeedVectorSpeed(4);
+		boss.setDriver(bossDriv);
+		boss.setPosition(new Point(14 * SPRITE_SIZE, 15 * SPRITE_SIZE));
+		universe.addGameEntity(boss);
+		
 		// Ghosts definition and inclusion in the universe
-		Enemy enemy;
-		for (int t = 0; t < NUMBER_OF_ENEMIES; ++t) {
-			GameMovableDriverDefaultImpl ghostDriv = new GhostMovableDriver();
-			MoveStrategyRandom ranStr = new MoveStrategyRandom();
-			ghostDriv.setStrategy(ranStr);
-			ghostDriv.setmoveBlockerChecker(moveBlockerChecker);
+		List<Point> enemyPos = new ArrayList<Point>();
+		enemyPos.add(new Point(SPRITE_SIZE, 2 * SPRITE_SIZE));
+		enemyPos.add(new Point(15 * SPRITE_SIZE, SPRITE_SIZE));
+		enemyPos.add(new Point(20 * SPRITE_SIZE, 29 * SPRITE_SIZE));
+		enemyPos.add(new Point(6 * SPRITE_SIZE, 17 * SPRITE_SIZE));
+		enemyPos.add(new Point(12 * SPRITE_SIZE, 5 * SPRITE_SIZE));
+		enemyPos.add(new Point(18 * SPRITE_SIZE, 20 * SPRITE_SIZE));
 
-			if (t < 6){ // on crée une armée
-				enemy = new Enemy(canvas, age, "Simple", "totoArmy"+t, 3);
+		Enemy enemy;
+		Random random = new Random();
+		String soldierType;
+		List<String> soldierTypeList = new ArrayList<String>();
+		soldierTypeList.add("Simple");
+		soldierTypeList.add("Complex");
+		
+		for (int t = 0; t < NUMBER_OF_ENEMIES; ++t) {
+			if (t >= enemyPos.size())
+				break;
+			
+			// On choisit le type de soldat aléatoirement
+			soldierType = soldierTypeList.get(random.nextInt(soldierTypeList.size()));
+			if (t >= 2){ // on crée une armée
+				enemy = new Enemy(canvas, age, soldierType, "totoArmy"+t, 3);
 				
 			}else{
-				enemy = new Enemy(canvas, age, "Simple", "toto"+t);
+				enemy = new Enemy(canvas, age, soldierType, "toto"+t);
 			}
-
-			enemy.setDriver(ghostDriv);
-			// TODO : changer la position des ennemis ici
-			enemy.setPosition(new Point(14 * SPRITE_SIZE, 15 * SPRITE_SIZE));
+			
+			enemy.setPosition(enemyPos.get(t));
 			universe.addGameEntity(enemy);
 			(overlapRules).addEnemy(enemy);
 		}

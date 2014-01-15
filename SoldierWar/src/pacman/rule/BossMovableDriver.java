@@ -1,10 +1,16 @@
 package pacman.rule;
 
+import java.awt.Point;
+
 import gameframework.base.Movable;
 import gameframework.base.SpeedVector;
+import gameframework.base.SpeedVectorDefaultImpl;
 import gameframework.game.GameMovableDriverDefaultImpl;
 
-public class GhostMovableDriver extends GameMovableDriverDefaultImpl {
+public class BossMovableDriver extends GameMovableDriverDefaultImpl {
+
+	// default value
+	private int speed = 8;
 
 	// A modified random strategy that makes ghosts mostly follow the alleys in
 	// one direction.
@@ -42,7 +48,11 @@ public class GhostMovableDriver extends GameMovableDriverDefaultImpl {
 			if (nbTries < 1)
 				break;
 		}
+		possibleSpeedVector.setSpeed(speed);
 		return (possibleSpeedVector);
 	}
 
+	public void setSpeedVectorSpeed(int speed){
+		this.speed  = speed;
+	}
 }

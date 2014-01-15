@@ -20,7 +20,7 @@ public class HealthObserver extends Observable implements ObserverGameDetails {
 	}
 	
 	public void updateFrameHealth(){
-		l.setText(""+h.getHealthPointUnit());
+		l.setText(""+h.getHealthPointsUnit());
 	}
 
 	@Override

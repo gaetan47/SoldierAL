@@ -22,7 +22,7 @@ public class HeroObserver extends Observable implements ObserverGameDetails {
 	}
 	
 	public void updateFrameHeroHealth(){
-		frame.getHeroHealth2().setText(""+h.getHealthPointHero());
+		frame.getHeroHealth2().setText(""+h.getHealthPointsHero());
 	}
 	
 	public void updateFrameForceHero(){
@@ -37,7 +37,7 @@ public class HeroObserver extends Observable implements ObserverGameDetails {
 			if (tmpLife[i].getText() == ""){
 				tmpName[i].setText(enemy.getName());
 				tmpForce[i].setText(""+enemy.strike());
-				tmpLife[i].setText(""+enemy.getHealthPointUnit());
+				tmpLife[i].setText(""+enemy.getHealthPointsUnit());
 				break;
 			}
 		}

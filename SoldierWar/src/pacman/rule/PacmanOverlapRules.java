@@ -12,6 +12,7 @@ import java.util.Random;
 import java.util.Vector;
 
 import pacman.entity.AbstractBonus;
+import pacman.entity.Boss;
 import pacman.entity.Enemy;
 import pacman.entity.Hero;
 import pacman.entity.Jail;
@@ -65,8 +66,17 @@ public class PacmanOverlapRules extends OverlapRulesApplierDefaultImpl {
 	public void overlapRule(Enemy e, AbstractBonus spg) {
 	}
 
+	/* Useless car les enemis de bougent pas
 	public void overlapRule(Enemy e, TeleportPairOfPoints teleport) {
 		e.setPosition(teleport.getDestination());
+	}*/
+
+	public void overlapRule(Hero hero, TeleportPairOfPoints teleport) {
+		hero.setPosition(teleport.getDestination());
+	}
+
+	public void overlapRule(Boss boss, TeleportPairOfPoints teleport) {
+		boss.setPosition(teleport.getDestination());
 	}
 
 
@@ -83,13 +93,13 @@ public class PacmanOverlapRules extends OverlapRulesApplierDefaultImpl {
 
 
 	/*
-	 * Ici le h�ro rencontre un bonus vie qui lui redonne de la vie (que � lui)
+	 * Ici le héro rencontre un bonus vie qui lui redonne de la vie (que à lui)
 	 * 
 	 */
 	public void overlapRule (Hero hero, Enemy enemy){
 		Random random = new Random();
 		boolean isHeroFirst;
-		while (hero.getHealthPointUnit() > 0 && enemy.getHealthPointUnit() > 0){
+		while (hero.getHealthPointsUnit() > 0 && enemy.getHealthPointsUnit() > 0){
 			// On choisit aléatoirement si notre héro ou l'ennemi commence à attaquer
 			isHeroFirst = random.nextBoolean();
 			if (isHeroFirst){
@@ -102,40 +112,71 @@ public class PacmanOverlapRules extends OverlapRulesApplierDefaultImpl {
 			}
 		
 		}
-		if (hero.getHealthPointUnit() > 0){
+		if (hero.getHealthPointsUnit() > 0){
 			
 			enemy.heal();
 			hero.addEntity(enemy);
 			universe.removeGameEntity(enemy);
 		}else{
 			universe.removeGameEntity(hero);
-			managePacmanDeath = false;
+			// TODO: display "You lose"
+		}
+
+	}
+	
+	public void overlapRule (Hero hero, Boss boss){
+		Random random = new Random();
+		boolean isHeroFirst;
+		while (hero.getHealthPointsUnit() > 0 && boss.getHealthPointsUnit() > 0){
+			// On choisit aléatoirement si notre héro ou l'ennemi commence à attaquer
+			isHeroFirst = random.nextBoolean();
+			if (isHeroFirst){
+
+				boss.parry(hero.strike());
+				hero.parry(boss.strike());
+			}else{
+				hero.parry(boss.strike());
+				boss.parry(hero.strike());
+			}
+		
+		}
+		if (hero.getHealthPointsUnit() > 0){
+			universe.removeGameEntity(boss);
+			// TODO: display "You win"
+		}else{
+			universe.removeGameEntity(hero);
+			// TODO: display "You lose"
 		}
 
 	}
 
 
 	public void overlapRule (Hero hero, Heart heart){
-		//TODO : d�finir (pour le moment 50) le nombre de HP � rajouter
-		if (hero.getMaxHealthPointHero() - hero.getHealthPointHero() <= 50){
-			hero.addHealthPointHero(hero.getMaxHealthPointHero() - hero.getHealthPointHero());
+		//TODO : définir (pour le moment 50) le nombre de HP à rajouter
+		if (hero.getMaxHealthPointsHero() - hero.getHealthPointsHero() <= 50){
+			hero.addHealthPointsHero(hero.getMaxHealthPointsHero() - hero.getHealthPointsHero());
 		}
 		else{
-			hero.addHealthPointHero(50);
+			hero.addHealthPointsHero(50);
 		}
 		universe.removeGameEntity(heart);
 	}
 
 	public void overlapRule (Hero h, SuperHeart spg){
-		h.addHealthPointHero(-30);
+		h.addHealthPointsHero(-30);
 		universe.removeGameEntity(spg);
 	}
 
 	public void overlapRule (Hero hero, Sword sword){
-		
+		System.out.println("attaque du hero avant: "+hero.strike());
+		hero.addEquipment("Offensive");
+		System.out.println("attaque du hero après: "+hero.strike());
+		universe.removeGameEntity(sword);
 	}
 
-	public void overlapRule (Hero hero, Shield sword){
-
+	public void overlapRule (Hero hero, Shield shield){
+		System.out.println("c'etait un bouclier");
+		hero.addEquipment("Defensive");
+		universe.removeGameEntity(shield);
 	}
 }
