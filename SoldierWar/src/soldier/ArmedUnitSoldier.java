@@ -5,9 +5,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import pacman.entity.Enemy;
-
-import utils.*;
+import utils.AgeFactory;
+import utils.ObservableAbstract;
+import utils.VisitorClassicForArmedUnit;
+import utils.VisitorFunForArmedUnit;
 
 public class ArmedUnitSoldier extends ObservableAbstract<ArmedUnit> implements
 		ArmedUnit {

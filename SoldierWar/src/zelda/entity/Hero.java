@@ -1,11 +1,11 @@
-package pacman.entity;
+package zelda.entity;
 
 import java.awt.Canvas;
 
-import pacman.ObserverGameDetails;
 import soldier.ArmedUnit;
 import soldier.ArmedUnitSquad;
 import utils.AgeFactory;
+import zelda.ObserverGameDetails;
 
 public class Hero extends AbstractEntity {
 	private ArmedUnit heroSquad;

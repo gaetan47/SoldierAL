@@ -1,11 +1,11 @@
-package pacman.rule;
+package zelda.rule;
 
 import gameframework.game.IllegalMoveException;
 import gameframework.game.MoveBlockerRulesApplierDefaultImpl;
-import pacman.entity.Boss;
-import pacman.entity.Wall;
+import zelda.entity.Boss;
+import zelda.entity.Wall;
 
-public class PacmanMoveBlockers extends MoveBlockerRulesApplierDefaultImpl {
+public class ZeldaMoveBlockers extends MoveBlockerRulesApplierDefaultImpl {
 
 	public void moveBlockerRule(Boss b, Wall w) throws IllegalMoveException {
 		// The default case is when a ghost is active and not able to cross a

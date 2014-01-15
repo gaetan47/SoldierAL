@@ -1,20 +1,19 @@
-package pacman;
+package zelda;
 
-import java.awt.Color;
-
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import pacman.entity.Hero;
-
 public class GameDetailsFrame extends JFrame{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JLabel heroHealth,heroForce; // Label "Hero Life", label "Force"
 	private JLabel numberHp; // Points de vie restant
 	private JLabel maxNumberHp; // Points de vie maximum
-	private JLabel numberForceHero; // Puissance hŽro
+	private JLabel numberForceHero; // Puissance hï¿½ro
 	private JPanel friendArmy[];
 	private JLabel lifeFriendArmy[];
 	private JLabel nameFriendArmy[];
@@ -63,7 +62,7 @@ public class GameDetailsFrame extends JFrame{
 		numberForceHero.setBounds(90, 30, 80, 10);
 		add(numberForceHero);
 		
-		/*Affichage des alliŽs*/
+		/*Affichage des alliï¿½s*/
 		int largPanel = 130;
 		int hautPanel = 80;
 		int id=0;

@@ -1,8 +1,9 @@
-package pacman.rule;
+package zelda.rule;
 
 import gameframework.base.MoveStrategyRandom;
 import gameframework.base.ObservableValue;
 import gameframework.base.Overlap;
+import gameframework.game.GameLevelDefaultImpl;
 import gameframework.game.GameMovableDriverDefaultImpl;
 import gameframework.game.GameUniverse;
 import gameframework.game.OverlapRulesApplierDefaultImpl;
@@ -11,38 +12,40 @@ import java.awt.Point;
 import java.util.Random;
 import java.util.Vector;
 
-import pacman.entity.AbstractBonus;
-import pacman.entity.Boss;
-import pacman.entity.Enemy;
-import pacman.entity.Hero;
-import pacman.entity.Jail;
-import pacman.entity.Heart;
-import pacman.entity.Shield;
-import pacman.entity.SuperHeart;
-import pacman.entity.Sword;
-import pacman.entity.TeleportPairOfPoints;
+import zelda.entity.AbstractBonus;
+import zelda.entity.Boss;
+import zelda.entity.Enemy;
+import zelda.entity.Heart;
+import zelda.entity.Hero;
+import zelda.entity.Jail;
+import zelda.entity.Shield;
+import zelda.entity.SuperHeart;
+import zelda.entity.Sword;
+import zelda.entity.TeleportPairOfPoints;
 
-public class PacmanOverlapRules extends OverlapRulesApplierDefaultImpl {
+public class ZeldaOverlapRules extends OverlapRulesApplierDefaultImpl {
 	protected GameUniverse universe;
 	protected Vector<Enemy> vEnemy = new Vector<Enemy>();
 
 	protected Point pacManStartPos;
 	protected Point ghostStartPos;
+	@SuppressWarnings("unused")
 	private final ObservableValue<Integer> score;
+	@SuppressWarnings("unused")
 	private final ObservableValue<Integer> life;
 	private final ObservableValue<Boolean> endOfGame;
-	private int totalNbGums = 0;
-	private int nbEatenGums = 0;
 	protected boolean managePacmanDeath;
+	private GameLevelDefaultImpl game;
 
-	public PacmanOverlapRules(Point pacPos, Point gPos,
+	public ZeldaOverlapRules(Point pacPos, Point gPos,
 			ObservableValue<Integer> life, ObservableValue<Integer> score,
-			ObservableValue<Boolean> endOfGame) {
+			ObservableValue<Boolean> endOfGame, GameLevelDefaultImpl game) {
 		pacManStartPos = (Point) pacPos.clone();
 		ghostStartPos = (Point) gPos.clone();
 		this.life = life;
 		this.score = score;
 		this.endOfGame = endOfGame;
+		this.game = game;
 	}
 
 	public void setUniverse(GameUniverse universe) {
@@ -120,6 +123,8 @@ public class PacmanOverlapRules extends OverlapRulesApplierDefaultImpl {
 		}else{
 			universe.removeGameEntity(hero);
 			// TODO: display "You lose"
+			game.end();
+			
 		}
 
 	}
@@ -145,8 +150,10 @@ public class PacmanOverlapRules extends OverlapRulesApplierDefaultImpl {
 			// TODO: display "You win"
 		}else{
 			universe.removeGameEntity(hero);
+			endOfGame.setValue(true);
 			// TODO: display "You lose"
 		}
+		game.end();
 
 	}
 

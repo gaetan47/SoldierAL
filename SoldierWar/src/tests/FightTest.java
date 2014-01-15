@@ -18,13 +18,12 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import pacman.entity.Enemy;
-import pacman.entity.Hero;
-import pacman.rule.PacmanMoveBlockers;
-import pacman.rule.PacmanOverlapRules;
-import soldier.ArmedUnitSoldier;
 import utils.AgeFactory;
 import utils.MiddleAgeFactory;
+import zelda.entity.Enemy;
+import zelda.entity.Hero;
+import zelda.rule.ZeldaMoveBlockers;
+import zelda.rule.ZeldaOverlapRules;
 
 public class FightTest {
 	private Hero hero;
@@ -32,7 +31,7 @@ public class FightTest {
 	private static AgeFactory factory;
 	private static Canvas canvas;
 	private static GameUniverse universe;
-	private static PacmanOverlapRules overlapRules;
+	private static ZeldaOverlapRules overlapRules;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -46,10 +45,10 @@ public class FightTest {
 		OverlapProcessor overlapProcessor = new OverlapProcessorDefaultImpl();
 
 		MoveBlockerChecker moveBlockerChecker = new MoveBlockerCheckerDefaultImpl();
-		moveBlockerChecker.setMoveBlockerRules(new PacmanMoveBlockers());
+		moveBlockerChecker.setMoveBlockerRules(new ZeldaMoveBlockers());
 		
-		overlapRules = new PacmanOverlapRules(new Point(0,0),
-				new Point(0,0), new ObservableValue<Integer>(200), new ObservableValue<Integer>(0), new ObservableValue<Boolean>(false));
+		overlapRules = new ZeldaOverlapRules(new Point(0,0),
+				new Point(0,0), new ObservableValue<Integer>(200), new ObservableValue<Integer>(0), new ObservableValue<Boolean>(false), null);
 		overlapProcessor.setOverlapRules(overlapRules);
 
 		universe = new GameUniverseDefaultImpl(moveBlockerChecker, overlapProcessor);

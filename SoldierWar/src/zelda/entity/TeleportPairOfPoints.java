@@ -1,4 +1,4 @@
-package pacman.entity;
+package zelda.entity;
 
 import gameframework.base.Overlappable;
 import gameframework.game.GameEntity;

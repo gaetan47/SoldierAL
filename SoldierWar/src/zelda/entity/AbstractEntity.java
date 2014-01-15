@@ -1,4 +1,4 @@
-package pacman.entity;
+package zelda.entity;
 
 import gameframework.base.Drawable;
 import gameframework.base.DrawableImage;
@@ -13,11 +13,11 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 
-import pacman.ObserverGameDetails;
 import soldier.ArmedUnit;
 import soldier.ArmedUnitSoldier;
 import soldier.ArmedUnitSquad;
 import utils.AgeFactory;
+import zelda.ObserverGameDetails;
 
 public abstract class AbstractEntity extends GameMovable implements Drawable, GameEntity,
 	Overlappable {

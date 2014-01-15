@@ -1,7 +1,7 @@
-package pacman;
+package zelda;
 
-import pacman.entity.Enemy;
 import soldier.ArmedUnit;
+import zelda.entity.Enemy;
 
 public interface ObserverGameDetails {
 

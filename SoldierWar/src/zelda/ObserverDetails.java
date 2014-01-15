@@ -1,4 +1,4 @@
-package pacman;
+package zelda;
 
 public interface ObserverDetails {
 

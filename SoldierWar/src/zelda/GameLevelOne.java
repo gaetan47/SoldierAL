@@ -1,10 +1,8 @@
-package pacman;
+package zelda;
 
 import gameframework.base.MoveStrategyKeyboard;
 import gameframework.base.MoveStrategyRandom;
 import gameframework.base.ObservableValue;
-import gameframework.base.SpeedVector;
-import gameframework.base.SpeedVectorDefaultImpl;
 import gameframework.game.CanvasDefaultImpl;
 import gameframework.game.Game;
 import gameframework.game.GameLevelDefaultImpl;
@@ -22,24 +20,25 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import pacman.entity.Boss;
-import pacman.entity.Enemy;
-import pacman.entity.Heart;
-import pacman.entity.Hero;
-import pacman.entity.Jail;
-import pacman.entity.Shield;
-import pacman.entity.SuperHeart;
-import pacman.entity.Sword;
-import pacman.entity.TeleportPairOfPoints;
-import pacman.entity.Wall;
-import pacman.rule.BossMovableDriver;
-import pacman.rule.PacmanMoveBlockers;
-import pacman.rule.PacmanOverlapRules;
 import utils.AgeFactory;
 import utils.MiddleAgeFactory;
+import zelda.entity.Boss;
+import zelda.entity.Enemy;
+import zelda.entity.Heart;
+import zelda.entity.Hero;
+import zelda.entity.Jail;
+import zelda.entity.Shield;
+import zelda.entity.SuperHeart;
+import zelda.entity.Sword;
+import zelda.entity.TeleportPairOfPoints;
+import zelda.entity.Wall;
+import zelda.rule.BossMovableDriver;
+import zelda.rule.ZeldaMoveBlockers;
+import zelda.rule.ZeldaOverlapRules;
 
 public class GameLevelOne extends GameLevelDefaultImpl {
 	Canvas canvas;
+
 
 	// 0 : Pacgums; 1 : Walls; 2 : SuperPacgums; 3 : Doors; 4 : Jail; 5 : empty
 	// Note: teleportation points are not indicated since they are defined by
@@ -79,7 +78,7 @@ public class GameLevelOne extends GameLevelDefaultImpl {
 
 	public static final int SPRITE_SIZE = 16;
 	public static final int NUMBER_OF_ENEMIES = 6;
-	public static int HERO_LIFE = 10000;
+	public static int HERO_LIFE = 100;
 	public static int HERO_STRENGTH = 50;
 	public static int BOSS_LIFE = 2000;
 	public static int BOSS_STRENGTH = 200;
@@ -89,15 +88,16 @@ public class GameLevelOne extends GameLevelDefaultImpl {
 		OverlapProcessor overlapProcessor = new OverlapProcessorDefaultImpl();
 
 		MoveBlockerChecker moveBlockerChecker = new MoveBlockerCheckerDefaultImpl();
-		moveBlockerChecker.setMoveBlockerRules(new PacmanMoveBlockers());
+		moveBlockerChecker.setMoveBlockerRules(new ZeldaMoveBlockers());
 		
 		// TODO : règles à initialiser ici
-		PacmanOverlapRules overlapRules = new PacmanOverlapRules(new Point(14 * SPRITE_SIZE, 17 * SPRITE_SIZE),
-				new Point(14 * SPRITE_SIZE, 15 * SPRITE_SIZE), new ObservableValue<Integer>(HERO_LIFE), score[0], endOfGame);
+		ZeldaOverlapRules overlapRules = new ZeldaOverlapRules(new Point(14 * SPRITE_SIZE, 17 * SPRITE_SIZE),
+				new Point(14 * SPRITE_SIZE, 15 * SPRITE_SIZE), new ObservableValue<Integer>(HERO_LIFE), score[0], endOfGame, this);
 		overlapProcessor.setOverlapRules(overlapRules);
 
 		universe = new GameUniverseDefaultImpl(moveBlockerChecker, overlapProcessor);
 		overlapRules.setUniverse(universe);
+		
 
 		gameBoard = new GameUniverseViewPortDefaultImpl(canvas, universe);
 		((CanvasDefaultImpl) canvas).setDrawingGameBoard(gameBoard);
@@ -197,7 +197,6 @@ public class GameLevelOne extends GameLevelDefaultImpl {
 			universe.addGameEntity(enemy);
 			(overlapRules).addEnemy(enemy);
 		}
-
 
 	}
 
