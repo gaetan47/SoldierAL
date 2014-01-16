@@ -28,9 +28,14 @@ public class HeroObserver extends Observable implements ObserverGameDetails {
 		frame.getNumberForceHero().setText(""+h.strike());
 	}
 	
-	public void updateFrameDefHero(){
-		frame.getNumberDefHero().setText(""+10);
+	public void updateFrameSwordHero(){
+		frame.getHeroSword().setText("Sword : yes (+15)" );
 	}
+	
+	public void updateFrameShieldHero(){
+		frame.getHeroDef().setText("Shield : yes (+10)" );
+	}
+
 	
 	public void updateFrameFriends(Enemy enemy){
 		JLabel tmpName[] = frame.getNameFriendArmy();
@@ -52,6 +57,8 @@ public class HeroObserver extends Observable implements ObserverGameDetails {
 		JLabel tmpLife [] =frame.getLifeFriendArmy();
 		JLabel tmpName[] = frame.getNameFriendArmy();
 		JLabel tmpForce [] =frame.getForceFriendArmy();
+		JLabel tmpSword [] =frame.getSwordFriendArmy();
+		JLabel tmpShield [] =frame.getShieldFriendArmy();
 		for (int i =0;i<6; i++){
 		
 			if ( tmpMap.containsKey(tmpName[i].getText())){
@@ -59,6 +66,8 @@ public class HeroObserver extends Observable implements ObserverGameDetails {
 					tmpLife[i].setText("");
 					tmpName[i].setText("No Army");
 					tmpForce[i].setText("");
+					tmpSword[i].setText("");
+					tmpShield[i].setText("");
 					
 				}
 				else{
@@ -70,5 +79,32 @@ public class HeroObserver extends Observable implements ObserverGameDetails {
 		
 	}
 	
+	
+	public void updateFrameFriendSword(){
+		
+		JLabel tmpName[] = frame.getNameFriendArmy();
+		JLabel tmpSword [] =frame.getSwordFriendArmy();
+		for (int i =0;i<6; i++){
+			if (!tmpName[i].getText().equals("No Army")){
+				tmpSword[i].setText("(+15)");
+			}
 
+			
+		}
+		
+	}
+	
+	public void updateFrameFriendShield(){
+		
+		JLabel tmpName[] = frame.getNameFriendArmy();
+		JLabel tmpShield [] =frame.getShieldFriendArmy();
+		for (int i =0;i<6; i++){
+			if (!tmpName[i].getText().equals("No Army")){
+				tmpShield[i].setText("(+10)");
+			}
+
+			
+		}
+		
+	}
 }

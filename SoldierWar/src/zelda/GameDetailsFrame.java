@@ -8,11 +8,12 @@ public class GameDetailsFrame extends JFrame{
 	
 
 	private static final long serialVersionUID = 1L;
-	private JLabel heroHealth,heroForce,heroDef; // Label "Hero Life", label "Force"
+	private JLabel heroHealth,heroForce,heroDef,heroSword; // Label "Hero Life", label "Force"
+
 	private JLabel numberHp; // Points de vie restant
 	private JLabel maxNumberHp; // Points de vie maximum
-	private JLabel numberForceHero; // Puissance hŽro
-	private JLabel numberDefHero; // Defense hŽro
+	private JLabel numberForceHero; // Puissance hï¿½ro
+	
 
 
 	
@@ -21,8 +22,10 @@ public class GameDetailsFrame extends JFrame{
 	private JLabel lifeFriendArmy[];
 	private JLabel nameFriendArmy[];
 	private JLabel forceFriendArmy[];
+	private JLabel swordFriendArmy[];
+	private JLabel shieldFriendArmy[];
 
-	
+
 
 	private float healthpoint;
 	private float maxHealthPoint;
@@ -34,6 +37,8 @@ public class GameDetailsFrame extends JFrame{
 		lifeFriendArmy = new JLabel[6];
 		nameFriendArmy = new JLabel[6];
 		forceFriendArmy = new JLabel[6];
+		swordFriendArmy= new JLabel[6];
+		shieldFriendArmy= new JLabel[6];
 		this.healthpoint = healthpoint;
 		this.maxHealthPoint = maxHealthPoint;
 		this.forceHero = forceHero;
@@ -53,9 +58,13 @@ public class GameDetailsFrame extends JFrame{
 		heroForce.setBounds(10, 30, 80, 10);
 		add(heroForce);
 		
-		heroDef = new JLabel("Defense :");
-		heroDef.setBounds(180, 30, 80, 10);
+		heroDef = new JLabel("Shield : no");
+		heroDef.setBounds(240, 30, 150, 12);
 		add(heroDef);
+		
+		heroSword = new JLabel("Sword : no");
+		heroSword.setBounds(240, 10, 150, 12);
+		add(heroSword);
 		
 		numberHp = new JLabel(""+healthpoint);
 		numberHp.setBounds(90, 10, 70, 10);
@@ -70,11 +79,9 @@ public class GameDetailsFrame extends JFrame{
 		add(numberForceHero);
 		
 
-		numberDefHero = new JLabel(""+0);
-		numberDefHero.setBounds(260, 30, 80, 10);
-		add(numberDefHero);
 		
-		/*Affichage des alliŽs*/
+		
+		/*Affichage des alliï¿½s*/
 
 		int largPanel = 130;
 		int hautPanel = 80;
@@ -117,24 +124,38 @@ public class GameDetailsFrame extends JFrame{
 	public JPanel createPanel(int id){
 		JPanel p = new JPanel();
 		p.setLayout(null);
-		JLabel label = new JLabel("No army");
+		JLabel label = new JLabel("No Army");
 		label.setBounds(10, 0, 100,20);
 		nameFriendArmy[id] = label;
 		JLabel label2 = new JLabel("Life :");
-		label2.setBounds(10, 30, 50, 15);
+		label2.setBounds(10, 20, 50, 15);
 		JLabel label4 = new JLabel("");
-		label4.setBounds(70, 30, 60, 15);
+		label4.setBounds(70, 20, 60, 15);
 		lifeFriendArmy[id] = label4;
 		JLabel label3 = new JLabel("Force :");
-		label3.setBounds(10, 60, 50, 15);
+		label3.setBounds(10, 35, 50, 15);
 		JLabel label5 = new JLabel("");
-		label5.setBounds(70, 60, 50, 15);
+		label5.setBounds(70, 35, 50, 15);
 		forceFriendArmy[id] = label5;
+		JLabel label6 = new JLabel("Sword :");
+		label6.setBounds(10, 50, 50, 15);
+		JLabel label7 = new JLabel("");
+		label7.setBounds(70, 50, 50, 15);
+		swordFriendArmy[id] = label7;
+		JLabel label8 = new JLabel("Shield :");
+		label8.setBounds(10, 65, 50, 15);
+		JLabel label9 = new JLabel("");
+		label9.setBounds(70, 65, 50, 15);
+		shieldFriendArmy[id] = label9;
 		p.add(label);
 		p.add(label2);
 		p.add(label3);
 		p.add(label4);
 		p.add(label5);
+		p.add(label6);
+		p.add(label7);
+		p.add(label8);
+		p.add(label9);
 		return p;
 	}
 
@@ -169,13 +190,40 @@ public class GameDetailsFrame extends JFrame{
 		this.forceFriendArmy = forceFriendArmy;
 	}
 	
-	public JLabel getNumberDefHero() {
-		return numberDefHero;
+
+	
+	public JLabel[] getSwordFriendArmy() {
+		return swordFriendArmy;
 	}
 
-	public void setNumberDefHero(JLabel numberDefHero) {
-		this.numberDefHero = numberDefHero;
+	public void setSwordFriendArmy(JLabel[] swordFriendArmy) {
+		this.swordFriendArmy = swordFriendArmy;
 	}
+	
+	public JLabel[] getShieldFriendArmy() {
+		return shieldFriendArmy;
+	}
+
+	public void setShieldFriendArmy(JLabel[] shieldFriendArmy) {
+		this.shieldFriendArmy = shieldFriendArmy;
+	}
+	
+	public JLabel getHeroSword() {
+		return heroSword;
+	}
+
+	public void setHeroSword(JLabel heroSword) {
+		this.heroSword = heroSword;
+	}
+
+	public JLabel getHeroDef() {
+		return heroDef;
+	}
+
+	public void setHeroDef(JLabel heroDef) {
+		this.heroDef = heroDef;
+	}
+
 	
 	
 	

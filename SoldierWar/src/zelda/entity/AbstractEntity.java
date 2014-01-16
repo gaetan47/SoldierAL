@@ -151,8 +151,16 @@ public abstract class AbstractEntity extends GameMovable implements Drawable, Ga
 		public void addEquipment(String weaponType) {
 			unit.addEquipment(weaponType);
 			for (ObserverGameDetails ho : obs){
+				if (weaponType=="Offensive"){
+					ho.updateFrameSwordHero();
+					ho.updateFrameFriendSword();
+				}
+				if (weaponType=="Defensive"){
+					ho.updateFrameShieldHero();
+					ho.updateFrameFriendShield();
+				}
 				ho.updateFrameForceHero();
-				ho.updateFrameDefHero();
+				
 			}
 		}
 		
@@ -164,7 +172,7 @@ public abstract class AbstractEntity extends GameMovable implements Drawable, Ga
 			unit.parry(force);
 			for (ObserverGameDetails ho : obs){
 				ho.updateFrameHeroHealth();
-				ho.updateFrameDefHero();
+				
 				ho.updateFrameForceHero();
 			}
 			if (unit.getClass() == ArmedUnitSquad.class){

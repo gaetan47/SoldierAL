@@ -2,7 +2,7 @@ package soldier;
 
 public class InfantryMan extends SoldierAbstract {
 	private static final int FORCE = 15;
-	private static final int HEALTHPOINTS = 100;
+	private static final int HEALTHPOINTS = 5;
 	private int maxHealthPoints;
 
 	public InfantryMan(String nom) {
