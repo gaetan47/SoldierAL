@@ -120,10 +120,12 @@ public class ZeldaOverlapRules extends OverlapRulesApplierDefaultImpl {
 			enemy.heal();
 			hero.addEntity(enemy);
 			universe.removeGameEntity(enemy);
+			System.out.println(hero.getTotalStrength());
 		}else{
 			universe.removeGameEntity(hero);
 			// TODO: display "You lose"
-			game.end();
+			System.out.println("You lose");
+			endOfGame.setValue(true);
 			
 		}
 
@@ -148,10 +150,14 @@ public class ZeldaOverlapRules extends OverlapRulesApplierDefaultImpl {
 		if (hero.getHealthPointsUnit() > 0){
 			universe.removeGameEntity(boss);
 			// TODO: display "You win"
+			System.out.println("You win");
+			endOfGame.setValue(true);
 		}else{
 			universe.removeGameEntity(hero);
 			endOfGame.setValue(true);
 			// TODO: display "You lose"
+			System.out.println("You lose");
+			endOfGame.setValue(true);
 		}
 		game.end();
 
@@ -175,9 +181,15 @@ public class ZeldaOverlapRules extends OverlapRulesApplierDefaultImpl {
 	}
 
 	public void overlapRule (Hero hero, Sword sword){
+		System.out.println(hero.getTotalStrength());
+
 		System.out.println("attaque du hero avant: "+hero.strike());
 		hero.addEquipment("Offensive");
 		System.out.println("attaque du hero après: "+hero.strike());
+		System.out.println(hero.getTotalStrength());
+		System.out.println(hero.getSwordStrength());
+
+
 		universe.removeGameEntity(sword);
 	}
 

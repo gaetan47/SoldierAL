@@ -67,5 +67,22 @@ public abstract class SoldierArmed<W extends Weapon> implements Soldier {
 		return force;
 	}
 	
+	public float getShieldDefense(){
+		return weapon.getParryValue();
+		
+	}
+	
+	
+	public float getSwordStrength(){
+		return weapon.getStrikeValue();
+		
+	}
+	
+	public float getTotalStrength(){
+		return soldier.getTotalStrength() + weapon.getStrikeValue();
+	}
+	
+	
+	
 	
 }

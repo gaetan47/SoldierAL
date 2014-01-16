@@ -136,5 +136,27 @@ public class ArmedUnitSquad extends ObservableAbstract<ArmedUnit> implements
 		}
 		return map;
 	}
+
+	public float getTotalStrength() {
+		float totalStrength = 0;
+		for (ArmedUnit a : armedUnitList){
+			totalStrength += a.getTotalStrength();
+		}
+		return totalStrength;
+	}
+
+	public float getSwordStrength() {
+		if (armedUnitList.size() == 0) return 0;
+		float swordStrength = armedUnitList.get(0).getSwordStrength();
+		
+		return swordStrength;
+	}
+
+	public float getShieldDefense() {
+		if (armedUnitList.size() == 0) return 0;
+		float shieldDefense = armedUnitList.get(0).getShieldDefense();
+
+		return shieldDefense;
+	}
 	
 }

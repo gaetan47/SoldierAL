@@ -21,5 +21,8 @@ public interface ArmedUnit {
 	public <T> T accept(VisitorFunForArmedUnit<T> v);
 	public int numberOfFriend();
 	public HashMap<String, Float> getHealthAndName();
+	public float getTotalStrength();
+	public float getSwordStrength();
+	public float getShieldDefense();
 	
 }

@@ -6,6 +6,9 @@ public interface Soldier {
 	public void addHealthPoints(float f);
 	public boolean alive();
 	public void heal();
+	public float getTotalStrength();
+	public float getSwordStrength();
+	public float getShieldDefense();
 	
 	/**
 	 * @param force the force of the attack the receiver has to parry

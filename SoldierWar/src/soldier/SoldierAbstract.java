@@ -45,4 +45,16 @@ public abstract class SoldierAbstract implements Soldier {
 	public void setForce(float force) {
 		this.force = force;
 	}
+	
+	public float getTotalStrength(){
+		return force;
+	}
+	
+	public float getSwordStrength(){
+		return 0;
+	}
+	
+	public float getShieldDefense(){
+		return 0;
+	}
 }

@@ -115,8 +115,19 @@ public class ArmedUnitSoldier extends ObservableAbstract<ArmedUnit> implements
 
 	@Override
 	public HashMap<String, Float> getHealthAndName() {
-		// TODO Auto-generated method stub
 		return new HashMap<String, Float>();
+	}
+
+	public float getTotalStrength() {
+		return soldier.getTotalStrength();
+	}
+
+	public float getSwordStrength() {
+		return soldier.getSwordStrength();
+	}
+
+	public float getShieldDefense() {
+		return soldier.getShieldDefense();
 	}
 
 	

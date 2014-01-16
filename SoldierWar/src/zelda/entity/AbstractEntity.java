@@ -175,6 +175,19 @@ public abstract class AbstractEntity extends GameMovable implements Drawable, Ga
 			return unit.getName();
 		}
 		
+		
+		public float getTotalStrength(){
+			return unit.getTotalStrength();
+		}
+		
+		public float getSwordStrength(){
+			return unit.getSwordStrength();
+		}
+		
+		public float getShieldDefense(){
+			return unit.getShieldDefense();
+		}
+		
 	
 	
 }

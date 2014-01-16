@@ -61,5 +61,6 @@ public class Hero extends AbstractEntity {
 		for (ObserverGameDetails ho : obs)
 			ho.updateFrameHeroHealth();
 	}
+	
 
 }
