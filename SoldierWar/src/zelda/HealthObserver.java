@@ -1,12 +1,12 @@
-package pacman;
+package zelda;
 
 import java.util.Observable;
 
 import javax.swing.JLabel;
 
-import pacman.entity.Enemy;
-import pacman.entity.Hero;
 import soldier.ArmedUnit;
+import zelda.entity.Enemy;
+import zelda.entity.Hero;
 
 public class HealthObserver extends Observable implements ObserverGameDetails {
 	

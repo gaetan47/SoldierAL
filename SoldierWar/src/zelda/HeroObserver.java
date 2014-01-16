@@ -1,14 +1,13 @@
-package pacman;
+package zelda;
 
 import java.util.HashMap;
 import java.util.Observable;
 
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 
-import pacman.entity.Enemy;
-import pacman.entity.Hero;
 import soldier.ArmedUnit;
+import zelda.entity.Enemy;
+import zelda.entity.Hero;
 
 public class HeroObserver extends Observable implements ObserverGameDetails {
 	

@@ -1,10 +1,7 @@
-package pacman.rule;
-
-import java.awt.Point;
+package zelda.rule;
 
 import gameframework.base.Movable;
 import gameframework.base.SpeedVector;
-import gameframework.base.SpeedVectorDefaultImpl;
 import gameframework.game.GameMovableDriverDefaultImpl;
 
 public class BossMovableDriver extends GameMovableDriverDefaultImpl {

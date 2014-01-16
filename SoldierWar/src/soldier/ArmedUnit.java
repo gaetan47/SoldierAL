@@ -2,10 +2,9 @@ package soldier;
 
 import java.util.HashMap;
 
-import pacman.entity.Enemy;
+import utils.AgeFactory;
 import utils.VisitorClassicForArmedUnit;
 import utils.VisitorFunForArmedUnit;
-import utils.AgeFactory;
 
 public interface ArmedUnit {
 	public String getName();
