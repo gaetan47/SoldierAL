@@ -11,10 +11,12 @@ import pacman.entity.Hero;
 
 public class GameDetailsFrame extends JFrame{
 	
-	private JLabel heroHealth,heroForce; // Label "Hero Life", label "Force"
+	private JLabel heroHealth,heroForce,heroDef; // Label "Hero Life", label "Force"
 	private JLabel numberHp; // Points de vie restant
 	private JLabel maxNumberHp; // Points de vie maximum
 	private JLabel numberForceHero; // Puissance héro
+	private JLabel numberDefHero; // Defense héro
+
 	private JPanel friendArmy[];
 	private JLabel lifeFriendArmy[];
 	private JLabel nameFriendArmy[];
@@ -51,17 +53,25 @@ public class GameDetailsFrame extends JFrame{
 		heroForce.setBounds(10, 30, 80, 10);
 		add(heroForce);
 		
+		heroDef = new JLabel("Defense :");
+		heroDef.setBounds(180, 30, 80, 10);
+		add(heroDef);
+		
 		numberHp = new JLabel(""+healthpoint);
-		numberHp.setBounds(90, 10, 50, 10);
+		numberHp.setBounds(90, 10, 70, 10);
 		add(numberHp);
 		
 		maxNumberHp = new JLabel("/ "+maxHealthPoint);
-		maxNumberHp.setBounds(140, 10, 60, 10);
+		maxNumberHp.setBounds(160, 10, 80, 10);
 		add(maxNumberHp);
 		
 		numberForceHero = new JLabel(""+ forceHero);
 		numberForceHero.setBounds(90, 30, 80, 10);
 		add(numberForceHero);
+		
+		numberDefHero = new JLabel(""+0);
+		numberDefHero.setBounds(260, 30, 80, 10);
+		add(numberDefHero);
 		
 		/*Affichage des alliés*/
 		int largPanel = 130;
@@ -155,6 +165,14 @@ public class GameDetailsFrame extends JFrame{
 
 	public void setForceFriendArmy(JLabel[] forceFriendArmy) {
 		this.forceFriendArmy = forceFriendArmy;
+	}
+	
+	public JLabel getNumberDefHero() {
+		return numberDefHero;
+	}
+
+	public void setNumberDefHero(JLabel numberDefHero) {
+		this.numberDefHero = numberDefHero;
 	}
 	
 	

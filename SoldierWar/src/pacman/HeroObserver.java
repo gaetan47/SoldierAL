@@ -29,6 +29,10 @@ public class HeroObserver extends Observable implements ObserverGameDetails {
 		frame.getNumberForceHero().setText(""+h.strike());
 	}
 	
+	public void updateFrameDefHero(){
+		frame.getNumberDefHero().setText(""+10);
+	}
+	
 	public void updateFrameFriends(Enemy enemy){
 		JLabel tmpName[] = frame.getNameFriendArmy();
 		JLabel tmpLife [] =frame.getLifeFriendArmy();
