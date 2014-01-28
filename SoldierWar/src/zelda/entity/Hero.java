@@ -30,6 +30,7 @@ public class Hero extends AbstractEntity {
 		for (ObserverGameDetails ho : obs){
 			ho.updateFrameForceHero();
 			ho.updateFrameFriends(enemy);
+			
 		}
 	}
 
@@ -62,5 +63,16 @@ public class Hero extends AbstractEntity {
 			ho.updateFrameHeroHealth();
 	}
 	
+
+	public void youWin(){
+		for (ObserverGameDetails ho : obs)
+			ho.updateWin();
+	}
+	
+	public void youLoose(){
+		for (ObserverGameDetails ho : obs)
+			ho.updateLoose();
+		
+	}
 
 }

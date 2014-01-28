@@ -47,4 +47,10 @@ public class HealthObserver extends Observable implements ObserverGameDetails {
 		
 	}
 
+	@Override
+	public void updateFrameDefHero() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

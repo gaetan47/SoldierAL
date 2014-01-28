@@ -20,7 +20,7 @@ public class Heart extends AbstractBonus implements Drawable, GameEntity, Overla
 
 	public Heart(Canvas defaultCanvas, Point pos) {
 		//TODO : Modifier l'image en vie
-		image = new DrawableImage("images/pacgum.gif", defaultCanvas);
+		image = new DrawableImage("images/heart.gif", defaultCanvas);
 		position = pos;
 	}
 }

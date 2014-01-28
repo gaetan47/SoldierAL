@@ -150,6 +150,18 @@ public abstract class AbstractEntity extends GameMovable implements Drawable, Ga
 		
 		public void addEquipment(String weaponType) {
 			unit.addEquipment(weaponType);
+			for (ObserverGameDetails ho : obs){
+				if (weaponType=="Offensive"){
+					ho.updateFrameSwordHero();
+					ho.updateFrameFriendSword();
+				}
+				if (weaponType=="Defensive"){
+					ho.updateFrameShieldHero();
+					ho.updateFrameFriendShield();
+				}
+				ho.updateFrameForceHero();
+				
+			}
 		}
 		
 		public float strike(){
@@ -158,8 +170,11 @@ public abstract class AbstractEntity extends GameMovable implements Drawable, Ga
 		
 		public void parry(float force){
 			unit.parry(force);
-			for (ObserverGameDetails ho : obs)
+			for (ObserverGameDetails ho : obs){
 				ho.updateFrameHeroHealth();
+				
+				ho.updateFrameForceHero();
+			}
 			if (unit.getClass() == ArmedUnitSquad.class){
 				for (ObserverGameDetails ho : obs){
 					ho.updateFrameFriendHealth(unit);
