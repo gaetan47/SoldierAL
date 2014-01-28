@@ -46,9 +46,9 @@ public class GameLevelOne extends GameLevelDefaultImpl {
 	static int[][] tab = { 
 		    { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
 			{ 1, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 1, 1, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 1 },
-			{ 1, 2, 1, 1, 1, 1, 5, 1, 1, 1, 1, 1, 5, 1, 1, 5, 1, 1, 1, 1, 1, 5, 1, 1, 1, 1, 2, 1 },
+			{ 1, 5, 1, 1, 1, 1, 5, 1, 1, 1, 1, 1, 5, 1, 1, 5, 1, 1, 1, 1, 1, 5, 1, 1, 1, 1, 2, 1 },
 			{ 1, 5, 1, 1, 1, 1, 5, 1, 1, 1, 1, 1, 5, 1, 1, 5, 1, 1, 1, 1, 1, 5, 1, 1, 1, 1, 5, 1 },
-			{ 1, 5, 1, 1, 1, 1, 5, 1, 1, 1, 1, 1, 5, 1, 1, 5, 1, 1, 1, 1, 1, 5, 1, 1, 1, 1, 5, 1 },
+			{ 1, 2, 1, 1, 1, 1, 5, 1, 1, 1, 1, 1, 5, 1, 1, 5, 1, 1, 1, 1, 1, 5, 1, 1, 1, 1, 5, 1 },
 			{ 1, 5, 5, 5, 5, 5, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 0, 5, 5, 5, 5, 5, 5, 5, 5, 1 },
 			{ 1, 5, 1, 1, 1, 1, 5, 1, 1, 5, 1, 1, 1, 1, 1, 1, 1, 1, 5, 1, 1, 5, 1, 1, 1, 1, 5, 1 },
 			{ 1, 5, 1, 1, 1, 1, 5, 1, 1, 5, 1, 1, 1, 1, 1, 1, 1, 1, 5, 1, 1, 5, 1, 1, 1, 1, 5, 1 },
@@ -187,10 +187,10 @@ public class GameLevelOne extends GameLevelDefaultImpl {
 			// On choisit le type de soldat aléatoirement
 			soldierType = soldierTypeList.get(random.nextInt(soldierTypeList.size()));
 			if (t >= 2){ // on crée une armée
-				enemy = new Enemy(canvas, age, soldierType, "totoArmy"+t, 3);
+				enemy = new Enemy(canvas, age, soldierType, "totoArmy"+t+"x3", 3);
 				
 			}else{
-				enemy = new Enemy(canvas, age, soldierType, "toto"+t);
+				enemy = new Enemy(canvas, age, soldierType, "toto"+t+"x1");
 			}
 			
 			enemy.setPosition(enemyPos.get(t));

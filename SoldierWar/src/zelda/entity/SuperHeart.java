@@ -12,7 +12,7 @@ public class SuperHeart extends AbstractBonus implements Drawable, GameEntity, O
 
 
 	public SuperHeart(Canvas defaultCanvas, Point pos) {
-		image = new DrawableImage("images/superpacgum.gif", defaultCanvas);
+		image = new DrawableImage("images/dead.gif", defaultCanvas);
 		position = pos;
 	}
 

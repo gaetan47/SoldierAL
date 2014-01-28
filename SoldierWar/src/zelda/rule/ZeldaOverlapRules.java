@@ -106,9 +106,9 @@ public class ZeldaOverlapRules extends OverlapRulesApplierDefaultImpl {
 			// On choisit aléatoirement si notre héro ou l'ennemi commence à attaquer
 			isHeroFirst = random.nextBoolean();
 			if (isHeroFirst){
-
 				enemy.parry(hero.strike());
 				hero.parry(enemy.strike());
+				
 			}else{
 				hero.parry(enemy.strike());
 				enemy.parry(hero.strike());
@@ -123,6 +123,7 @@ public class ZeldaOverlapRules extends OverlapRulesApplierDefaultImpl {
 		}else{
 			universe.removeGameEntity(hero);
 			// TODO: display "You lose"
+			hero.youLoose();
 			game.end();
 			
 		}
@@ -148,10 +149,12 @@ public class ZeldaOverlapRules extends OverlapRulesApplierDefaultImpl {
 		if (hero.getHealthPointsUnit() > 0){
 			universe.removeGameEntity(boss);
 			// TODO: display "You win"
+			hero.youWin();
 		}else{
 			universe.removeGameEntity(hero);
 			endOfGame.setValue(true);
 			// TODO: display "You lose"
+			hero.youLoose();
 		}
 		game.end();
 

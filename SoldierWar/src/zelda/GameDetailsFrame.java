@@ -13,8 +13,10 @@ public class GameDetailsFrame extends JFrame{
 	private JLabel numberHp; // Points de vie restant
 	private JLabel maxNumberHp; // Points de vie maximum
 	private JLabel numberForceHero; // Puissance h�ro
-	
+	private JLabel result;
 
+
+	
 
 	
 
@@ -48,6 +50,9 @@ public class GameDetailsFrame extends JFrame{
 	public void build(){
 		setLayout(null);
 		
+		result = new JLabel("");
+		result.setBounds(150, 320, 100, 30);
+		add(result);
 		
 		
 		heroHealth = new JLabel("HeroLife :");
@@ -222,6 +227,14 @@ public class GameDetailsFrame extends JFrame{
 
 	public void setHeroDef(JLabel heroDef) {
 		this.heroDef = heroDef;
+	}
+	
+	public JLabel getResult() {
+		return result;
+	}
+
+	public void setResult(JLabel result) {
+		this.result = result;
 	}
 
 	

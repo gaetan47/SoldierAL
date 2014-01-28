@@ -8,7 +8,7 @@ import java.awt.Point;
 public class Shield extends Weapon {
 
 	public Shield(Canvas defaultCanvas, Point pos) {
-		image = new DrawableImage("images/superpacgum.gif", defaultCanvas);
+		image = new DrawableImage("images/shield.gif", defaultCanvas);
 		position = pos;
 	}
 }

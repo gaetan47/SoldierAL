@@ -8,7 +8,7 @@ import java.awt.Point;
 public class Sword extends Weapon {
 
 	public Sword(Canvas defaultCanvas, Point pos) {
-		image = new DrawableImage("images/superpacgum.gif", defaultCanvas);
+		image = new DrawableImage("images/sword.gif", defaultCanvas);
 		position = pos;
 	}
 }

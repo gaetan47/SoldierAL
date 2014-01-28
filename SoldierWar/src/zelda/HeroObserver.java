@@ -84,9 +84,21 @@ public class HeroObserver extends Observable implements ObserverGameDetails {
 		
 		JLabel tmpName[] = frame.getNameFriendArmy();
 		JLabel tmpSword [] =frame.getSwordFriendArmy();
+		JLabel tmpForce []= frame.getForceFriendArmy();
+		
 		for (int i =0;i<6; i++){
 			if (!tmpName[i].getText().equals("No Army")){
-				tmpSword[i].setText("(+15)");
+				String str =tmpForce[i].getText();
+				String name =tmpName[i].getText();
+				String tab[] =name.split("x");
+				int nb = Integer.parseInt(tab[1]);
+				float f = Float.parseFloat(str);
+				float newForce = f + nb*15;
+				if (!tmpSword[i].getText().equals("(+15)x"+nb))
+					tmpForce[i].setText(""+newForce);
+				tmpSword[i].setText("(+15)x"+nb);
+				
+				
 			}
 
 			
@@ -100,11 +112,26 @@ public class HeroObserver extends Observable implements ObserverGameDetails {
 		JLabel tmpShield [] =frame.getShieldFriendArmy();
 		for (int i =0;i<6; i++){
 			if (!tmpName[i].getText().equals("No Army")){
-				tmpShield[i].setText("(+10)");
+				
+				String name =tmpName[i].getText();
+				String tab[] =name.split("x");
+				int nb = Integer.parseInt(tab[1]);
+				tmpShield[i].setText("(+10)x"+nb);
+				
 			}
 
 			
 		}
+		
+	}
+	
+	public void updateWin(){
+		frame.getResult().setText("YOU WIN !!!");
+		
+	}
+	public void updateLoose(){
+		frame.getResult().setText("GAME OVER !!!");
+		
 		
 	}
 }
