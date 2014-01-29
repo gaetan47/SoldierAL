@@ -59,7 +59,7 @@ public class FightTest {
 	@Before
 	public void setUpEntities(){
 		hero = new Hero(canvas, factory, "Super", "link", 200, 20);
-		enemy = new Enemy(canvas, factory, "Simple", "toto");
+		enemy = new Enemy(canvas, factory, "Simple", "toto", 1);
 	}
 	
 	

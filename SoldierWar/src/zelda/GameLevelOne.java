@@ -159,7 +159,7 @@ public class GameLevelOne extends GameLevelDefaultImpl {
 		MoveStrategyRandom ranStr = new MoveStrategyRandom();
 		bossDriv.setStrategy(ranStr);
 		bossDriv.setmoveBlockerChecker(moveBlockerChecker);
-		((BossMovableDriver)bossDriv).setSpeedVectorSpeed(4);
+		((BossMovableDriver)bossDriv).setSpeedVectorSpeed(8);
 		boss.setDriver(bossDriv);
 		boss.setPosition(new Point(14 * SPRITE_SIZE, 15 * SPRITE_SIZE));
 		universe.addGameEntity(boss);
@@ -190,7 +190,7 @@ public class GameLevelOne extends GameLevelDefaultImpl {
 				enemy = new Enemy(canvas, age, soldierType, "totoArmy"+t+"x3", 3);
 				
 			}else{
-				enemy = new Enemy(canvas, age, soldierType, "toto"+t+"x1");
+				enemy = new Enemy(canvas, age, soldierType, "toto"+t+"x1", 1);
 			}
 			
 			enemy.setPosition(enemyPos.get(t));

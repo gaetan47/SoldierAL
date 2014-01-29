@@ -29,6 +29,7 @@ public abstract class AbstractEntity extends GameMovable implements Drawable, Ga
 		public static final int RENDERING_SIZE = 16;
 
 		protected ArmedUnit unit;
+		private boolean isEnemy = false;
 		
 		// Constructeur pour un héro
 		public AbstractEntity(Canvas defaultCanvas, AgeFactory factory, String soldatType, String name
@@ -36,7 +37,7 @@ public abstract class AbstractEntity extends GameMovable implements Drawable, Ga
 			unit = new ArmedUnitSoldier(factory, soldatType, name,healthPoint,force);
 			if (isHero){
 				spriteManager = new SpriteManagerDefaultImpl("images/zelda_sprite.png",
-					defaultCanvas, 16, 12);
+					defaultCanvas, RENDERING_SIZE, 12);
 				spriteManager.setTypes(
 						//
 						"up",
@@ -45,7 +46,7 @@ public abstract class AbstractEntity extends GameMovable implements Drawable, Ga
 						"left");
 			}else{
 				spriteManager = new SpriteManagerDefaultImpl("images/boss.png",
-					defaultCanvas, 16, 3);
+					defaultCanvas, RENDERING_SIZE, 3);
 				spriteManager.setTypes(
 						//
 						"down",
@@ -56,46 +57,30 @@ public abstract class AbstractEntity extends GameMovable implements Drawable, Ga
 			
 		}
 		
-		
-		// Constructeur pour un soldat (un paramètre de plus)
-		public AbstractEntity(Canvas defaultCanvas, AgeFactory factory, String soldatType, String name) {
-			unit = new ArmedUnitSoldier(factory, soldatType, name);
-			// TODO : changer l'image
-			spriteManager = new SpriteManagerDefaultImpl("images/ghost.gif",
-					defaultCanvas, RENDERING_SIZE, 6);
-			// TODO : changer les types
-			spriteManager.setTypes(
-					//
-					"left",
-					"right",
-					"up",
-					"down",//
-					"inactive-left", "inactive-right", "inactive-up",
-					"inactive-down", //
-					"unused");
-		}
 
-		// Constructeur pour une armée
+		// Constructeur pour une armée ou un soldat seul
 		public AbstractEntity(Canvas defaultCanvas, AgeFactory factory, String soldatType, String name, int numberOfSoldiers) {
-			unit = new ArmedUnitSquad(factory, name);
-			// On remplit l'armée 
-			for (int i = 0; i < numberOfSoldiers; i++){
-				ArmedUnit soldier = new ArmedUnitSoldier(factory, soldatType, name+"Solider"+i);
-				((ArmedUnitSquad)unit).addUnit(soldier);
+			isEnemy = true;
+			if (numberOfSoldiers == 1){
+				unit = new ArmedUnitSoldier(factory, soldatType, name);
+				// TODO : changer l'image en fonction du type et du nombre de soldats
+				spriteManager = new SpriteManagerDefaultImpl("images/soldier.gif",
+						defaultCanvas, RENDERING_SIZE, 3);
+			}else{
+				unit = new ArmedUnitSquad(factory, name);
+				// On remplit l'armée 
+				for (int i = 0; i < numberOfSoldiers; i++){
+					ArmedUnit soldier = new ArmedUnitSoldier(factory, soldatType, name+"Solider"+i);
+					((ArmedUnitSquad)unit).addUnit(soldier);
+				}
+				// TODO : changer l'image en fonction du type et du nombre de soldats
+				spriteManager = new SpriteManagerDefaultImpl("images/army.gif",
+						defaultCanvas, RENDERING_SIZE, 3);
 			}
-			// TODO : changer l'image
-			spriteManager = new SpriteManagerDefaultImpl("images/ghost.gif",
-					defaultCanvas, RENDERING_SIZE, 6);
-			// TODO : changer les types
+			
 			spriteManager.setTypes(
 					//
-					"left",
-					"right",
-					"up",
-					"down",//
-					"inactive-left", "inactive-right", "inactive-up",
-					"inactive-down", //
-					"unused");
+					"inactive");
 		}
 
 		public boolean isActive() {
@@ -108,21 +93,27 @@ public abstract class AbstractEntity extends GameMovable implements Drawable, Ga
 
 		public void draw(Graphics g) {
 			String spriteType = "";
-			Point tmp = getSpeedVector().getDirection();
-			movable = true;
 
-			if (!isActive()) {
-				spriteType = "inactive-";
-			}
-
-			if (tmp.getX() == -1) {
-				spriteType += "left";
-			} else if (tmp.getY() == 1) {
-				spriteType += "down";
-			} else if (tmp.getY() == -1) {
-				spriteType += "up";
-			} else {
-				spriteType += "right";
+			if (!isEnemy) {
+			
+				Point tmp = getSpeedVector().getDirection();
+				movable = true;
+	
+				if (!isActive()) {
+					spriteType = "inactive-";
+				}
+	
+				if (tmp.getX() == -1) {
+					spriteType += "left";
+				} else if (tmp.getY() == 1) {
+					spriteType += "down";
+				} else if (tmp.getY() == -1) {
+					spriteType += "up";
+				} else {
+					spriteType += "right";
+				}
+			}else{
+				spriteType = "inactive";
 			}
 
 			spriteManager.setType(spriteType);
