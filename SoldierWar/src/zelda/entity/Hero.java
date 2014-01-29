@@ -13,7 +13,7 @@ public class Hero extends AbstractEntity {
 
 	public Hero (Canvas defaultCanvas, AgeFactory factory, String soldatType, String name
 			,int healthPoint,int force){
-		super(defaultCanvas, factory,soldatType, name,healthPoint,force);
+		super(defaultCanvas, factory,soldatType, name,healthPoint,force, true);
 	}
 
 	public void addEntity(Enemy enemy){

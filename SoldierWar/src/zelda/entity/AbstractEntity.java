@@ -30,23 +30,30 @@ public abstract class AbstractEntity extends GameMovable implements Drawable, Ga
 
 		protected ArmedUnit unit;
 		
-		// Constructeur pour un héro ou boss (Super)
+		// Constructeur pour un héro
 		public AbstractEntity(Canvas defaultCanvas, AgeFactory factory, String soldatType, String name
-				,int healthPoint,int force) {
+				,int healthPoint,int force, boolean isHero) {
 			unit = new ArmedUnitSoldier(factory, soldatType, name,healthPoint,force);
-			// TODO : changer l'image
-			spriteManager = new SpriteManagerDefaultImpl("images/pac1.gif",
-					defaultCanvas, RENDERING_SIZE, 6);
-			// TODO : changer les types
-			spriteManager.setTypes(
-					//
-					"left",
-					"right",
-					"up",
-					"down",//
-					"inactive-left", "inactive-right", "inactive-up",
-					"inactive-down", //
-					"unused");
+			if (isHero){
+				spriteManager = new SpriteManagerDefaultImpl("images/zelda_sprite.png",
+					defaultCanvas, 16, 12);
+				spriteManager.setTypes(
+						//
+						"up",
+						"right",
+						"down",
+						"left");
+			}else{
+				spriteManager = new SpriteManagerDefaultImpl("images/boss.png",
+					defaultCanvas, 16, 3);
+				spriteManager.setTypes(
+						//
+						"down",
+						"left",
+						"right",
+						"up");
+			}
+			
 		}
 		
 		

@@ -130,7 +130,7 @@ public class HeroObserver extends Observable implements ObserverGameDetails {
 		
 	}
 	public void updateLoose(){
-		frame.getResult().setText("GAME OVER !!!");
+		frame.getResult().setText("YOU LOSE !!!");
 		
 		
 	}
