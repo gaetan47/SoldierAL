@@ -8,10 +8,10 @@ import gameframework.game.GameEntity;
 import java.awt.Canvas;
 import java.awt.Point;
 
-public class SuperHeart extends AbstractBonus implements Drawable, GameEntity, Overlappable {
+public class BadHeart extends AbstractBonus implements Drawable, GameEntity, Overlappable {
 
 
-	public SuperHeart(Canvas defaultCanvas, Point pos) {
+	public BadHeart(Canvas defaultCanvas, Point pos) {
 		image = new DrawableImage("images/dead.gif", defaultCanvas);
 		position = pos;
 	}

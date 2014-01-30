@@ -19,7 +19,7 @@ import zelda.entity.Heart;
 import zelda.entity.Hero;
 import zelda.entity.Jail;
 import zelda.entity.Shield;
-import zelda.entity.SuperHeart;
+import zelda.entity.BadHeart;
 import zelda.entity.Sword;
 import zelda.entity.TeleportPairOfPoints;
 
@@ -63,7 +63,7 @@ public class ZeldaOverlapRules extends OverlapRulesApplierDefaultImpl {
 		super.applyOverlapRules(overlappables);
 	}	
 
-	public void overlapRule(Enemy e, SuperHeart spg) {
+	public void overlapRule(Enemy e, BadHeart spg) {
 	}
 
 	public void overlapRule(Enemy e, AbstractBonus spg) {
@@ -166,18 +166,23 @@ public class ZeldaOverlapRules extends OverlapRulesApplierDefaultImpl {
 
 
 	public void overlapRule (Hero hero, Heart heart){
-		//TODO : définir (pour le moment 50) le nombre de HP à rajouter
-		if (hero.getMaxHealthPointsHero() - hero.getHealthPointsHero() <= 50){
+		Random random = new Random();
+		// Random number between 50 and 200
+		int renderHealthPoints = random.nextInt(150) + 50; 
+		if (hero.getMaxHealthPointsHero() - hero.getHealthPointsHero() <= renderHealthPoints){
 			hero.addHealthPointsHero(hero.getMaxHealthPointsHero() - hero.getHealthPointsHero());
 		}
 		else{
-			hero.addHealthPointsHero(50);
+			hero.addHealthPointsHero(renderHealthPoints);
 		}
 		universe.removeGameEntity(heart);
 	}
 
-	public void overlapRule (Hero h, SuperHeart spg){
-		h.addHealthPointsHero(-30);
+	public void overlapRule (Hero h, BadHeart spg){
+		Random random = new Random();
+		// Random number between 50 and 200
+		int takenHealthPoints = random.nextInt(150) + 50; 
+		h.addHealthPointsHero(-takenHealthPoints);
 		universe.removeGameEntity(spg);
 	}
 
