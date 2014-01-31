@@ -110,10 +110,9 @@ public class FightTest {
 		// La force de l'ennemi viens s'ajouter à celle du héros
 		Assert.assertEquals(35, hero.strike(), 0.5);
 		// l'ennemi est régénéré aprés le combat pour être ajouté a l'armée du héros
-		Assert.assertEquals(100, enemy.getMaxHealthPointUnit(), 0.5);
-		Assert.assertEquals(100, enemy.getHealthPointsUnit(), 0.5);
-		// La vie totale est celle que possédais le hero + la vie de base de l'ennemi (100)
-		Assert.assertEquals(heroPV+100, hero.getHealthPointsUnit(), 0.5);
+		Assert.assertEquals(enemy.getMaxHealthPointUnit(), enemy.getHealthPointsUnit(), 0.5);
+		// La vie totale est celle que possédais le hero + la vie de base de l'ennemi 
+		Assert.assertEquals(heroPV+enemy.getHealthPointsUnit(), hero.getHealthPointsUnit(), 0.5);
 		
 
 	}
@@ -123,7 +122,7 @@ public class FightTest {
 		Assert.assertEquals(200, hero.getHealthPointsUnit(), 0.5);
 		Assert.assertEquals(200, hero.getHealthPointsHero(), 0.5);
 		hero.addEntity(enemy);
-		Assert.assertEquals(300, hero.getHealthPointsUnit(), 0.5);
+		Assert.assertEquals((200+enemy.getHealthPointsUnit()), hero.getHealthPointsUnit(), 0.5);
 		Assert.assertEquals(200, hero.getHealthPointsHero(), 0.5);
 	}
 }

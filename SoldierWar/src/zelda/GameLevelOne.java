@@ -185,13 +185,12 @@ public class GameLevelOne extends GameLevelDefaultImpl {
 			
 			// On choisit le type de soldat aléatoirement
 			soldierType = soldierTypeList.get(random.nextInt(soldierTypeList.size()));
-			if (t >= 2){ // on crée une armée
-				enemy = new Enemy(canvas, age, soldierType, "totoArmy"+t+"x3", 3);
-				
-			}else{
-				enemy = new Enemy(canvas, age, soldierType, "toto"+t+"x1", 1);
-			}
-			
+			int nbSoldiers = 1;
+			if (random.nextBoolean()) // on crée une armée
+				nbSoldiers = random.nextInt(6) + 2; 
+
+			enemy = new Enemy(canvas, age, soldierType, "toto"+t+"x"+nbSoldiers, nbSoldiers);
+							
 			enemy.setPosition(enemyPos.get(t));
 			universe.addGameEntity(enemy);
 			(overlapRules).addEnemy(enemy);
