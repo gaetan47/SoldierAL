@@ -63,7 +63,6 @@ public abstract class AbstractEntity extends GameMovable implements Drawable, Ga
 			isEnemy = true;
 			if (numberOfSoldiers == 1){
 				unit = new ArmedUnitSoldier(factory, soldatType, name);
-				// TODO : changer l'image en fonction du type et du nombre de soldats
 				spriteManager = new SpriteManagerDefaultImpl("images/soldier.gif",
 						defaultCanvas, RENDERING_SIZE, 3);
 			}else{
@@ -73,7 +72,6 @@ public abstract class AbstractEntity extends GameMovable implements Drawable, Ga
 					ArmedUnit soldier = new ArmedUnitSoldier(factory, soldatType, name+"Solider"+i);
 					((ArmedUnitSquad)unit).addUnit(soldier);
 				}
-				// TODO : changer l'image en fonction du type et du nombre de soldats
 				spriteManager = new SpriteManagerDefaultImpl("images/army.gif",
 						defaultCanvas, RENDERING_SIZE, 3);
 			}

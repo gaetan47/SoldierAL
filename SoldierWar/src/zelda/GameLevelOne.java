@@ -90,7 +90,6 @@ public class GameLevelOne extends GameLevelDefaultImpl {
 		MoveBlockerChecker moveBlockerChecker = new MoveBlockerCheckerDefaultImpl();
 		moveBlockerChecker.setMoveBlockerRules(new ZeldaMoveBlockers());
 		
-		// TODO : règles à initialiser ici
 		ZeldaOverlapRules overlapRules = new ZeldaOverlapRules(new Point(14 * SPRITE_SIZE, 17 * SPRITE_SIZE),
 				new Point(14 * SPRITE_SIZE, 15 * SPRITE_SIZE), new ObservableValue<Integer>(HERO_LIFE), score[0], endOfGame, this);
 		overlapProcessor.setOverlapRules(overlapRules);
@@ -164,7 +163,7 @@ public class GameLevelOne extends GameLevelDefaultImpl {
 		boss.setPosition(new Point(14 * SPRITE_SIZE, 15 * SPRITE_SIZE));
 		universe.addGameEntity(boss);
 		
-		// Ghosts definition and inclusion in the universe
+		// Enemies definition and inclusion in the universe
 		List<Point> enemyPos = new ArrayList<Point>();
 		enemyPos.add(new Point(SPRITE_SIZE, 2 * SPRITE_SIZE));
 		enemyPos.add(new Point(15 * SPRITE_SIZE, SPRITE_SIZE));
