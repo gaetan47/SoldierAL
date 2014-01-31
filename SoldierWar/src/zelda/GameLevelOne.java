@@ -49,7 +49,7 @@ public class GameLevelOne extends GameLevelDefaultImpl {
 			{ 1, 5, 1, 1, 1, 1, 5, 1, 1, 1, 1, 1, 5, 1, 1, 5, 1, 1, 1, 1, 1, 5, 1, 1, 1, 1, 2, 1 },
 			{ 1, 5, 1, 1, 1, 1, 5, 1, 1, 1, 1, 1, 5, 1, 1, 5, 1, 1, 1, 1, 1, 5, 1, 1, 1, 1, 5, 1 },
 			{ 1, 2, 1, 1, 1, 1, 5, 1, 1, 1, 1, 1, 5, 1, 1, 5, 1, 1, 1, 1, 1, 5, 1, 1, 1, 1, 5, 1 },
-			{ 1, 5, 5, 5, 5, 5, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 0, 5, 5, 5, 5, 5, 5, 5, 5, 1 },
+			{ 1, 5, 5, 5, 5, 5, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 1 },
 			{ 1, 5, 1, 1, 1, 1, 5, 1, 1, 5, 1, 1, 1, 1, 1, 1, 1, 1, 5, 1, 1, 5, 1, 1, 1, 1, 5, 1 },
 			{ 1, 5, 1, 1, 1, 1, 5, 1, 1, 5, 1, 1, 1, 1, 1, 1, 1, 1, 5, 1, 1, 5, 1, 1, 1, 1, 5, 1 },
 			{ 1, 5, 5, 5, 5, 5, 5, 1, 1, 5, 5, 5, 5, 1, 1, 5, 5, 5, 5, 1, 1, 5, 5, 5, 5, 5, 5, 1 },
@@ -81,7 +81,7 @@ public class GameLevelOne extends GameLevelDefaultImpl {
 	public static int HERO_LIFE = 1000;
 	public static int HERO_STRENGTH = 50;
 	public static int BOSS_LIFE = 2000;
-	public static int BOSS_STRENGTH = 200;
+	public static int BOSS_STRENGTH = 150;
 
 	@Override
 	protected void init() {
@@ -158,7 +158,7 @@ public class GameLevelOne extends GameLevelDefaultImpl {
 		MoveStrategyRandom ranStr = new MoveStrategyRandom();
 		bossDriv.setStrategy(ranStr);
 		bossDriv.setmoveBlockerChecker(moveBlockerChecker);
-		((BossMovableDriver)bossDriv).setSpeedVectorSpeed(8);
+		((BossMovableDriver)bossDriv).setSpeedVectorSpeed(6);
 		boss.setDriver(bossDriv);
 		boss.setPosition(new Point(14 * SPRITE_SIZE, 15 * SPRITE_SIZE));
 		universe.addGameEntity(boss);
